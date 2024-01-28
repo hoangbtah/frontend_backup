@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/page/employ.css">
+    <link rel="stylesheet" href="../css/main.css">
+    
+</head>
+<body>
+    <!-- phần header của trang -->
+    <div class="header">
+        <div class="header-left">
+            <div class="sibar">
+
+            </div>
+            <div class="logo">
+                KẾ TOÁN
+            </div>
+        </div>
+        <div class="header-right">
+            <div class="header-right-left">
+               <div class="header-right-left-logo">
+
+               </div>
+               <div class="header-right-left-title">
+                    CÔNG TY TINH SẢN XUẤT-THƯƠNG MẠI QUI PHÚC
+               </div>
+               <div class="header-right-left-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="6 9 12 15 18 9"></polyline></svg>
+               </div>
+            </div>
+            <div class="header-right-right">
+               <div class="m-icon-notice">
+
+               </div>
+               <div class="header-right-r-user">
+
+               </div>
+               <div class="header-right-r-title">
+                    <label for="">Nguyễn Văn Mạnh</label>
+                   
+               </div>
+               <div class="header-right-r-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="6 9 12 15 18 9"></polyline></svg>
+               </div>
+            </div>
+        </div>
+    </div>
+    <!-- phần chính của trang -->
+    <div class="main">
+        <div class="navbar">
+            <div class="menu-item menu-item-focus">
+                <div class="menu-icon m-icon-overview">   
+                </div>
+                <div class="menu-text">
+                    Tổng quan
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-icon m-icon-cash">
+                    
+                </div>
+                <div class="menu-text">
+                    Tiền mặt
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-icon m-icon-deposits">
+                    
+                </div>
+                <div class="menu-text">
+                    Tiền gửi
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-icon m-icon-purchase">
+                    
+                </div>
+                <div class="menu-text">
+                    Mua hàng
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-icon m-icon-sell">
+                    
+                </div>
+                <div class="menu-text">
+                    Bán hàng
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-icon m-icon-invoice-management">
+                    
+                </div>
+                <div class="menu-text">
+                    Quản lý hóa đơn 
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-icon m-icon-warehouse">
+                    
+                </div>
+                <div class="menu-text">
+                    Kho
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-icon m-icon-tools">
+                    
+                </div>
+                <div class="menu-text">
+                    Công cụ dụng cụ
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-icon m-icon-asset">
+                    
+                </div>
+                <div class="menu-text">
+                    Tài sản cố định
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-icon m-icon-tax">
+                    
+                </div>
+                <div class="menu-text">
+                    Thuế
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-icon m-icon-price">
+                    
+                </div>
+                <div class="menu-text">
+                    Giá thành
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-icon m-icon-synthetic">
+                    
+                </div>
+                <div class="menu-text">
+                    Tổng hợp
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-icon m-icon-budget">
+                    
+                </div>
+                <div class="menu-text">
+                    Ngân sách
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-icon m-icon-notice">
+                    
+                </div>
+                <div class="menu-text">
+                    Báo cáo
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-icon m-icon-financial-analysis">
+                    
+                </div>
+                <div class="menu-text">
+                    Phân tích tài chính
+                </div>
+            </div>
+
+        </div>
+        <div class="page-content">
+            <div class="m-page-header">
+                <div class="m-page-title">Nhân viên</div>
+                <div class="m-page-button">
+                    <button id="btn-add" class="m-btn ">Thêm mới nhân viên</button>
+                </div>
+            </div>
+            <div class="m-page-toolbar">
+                <div class="m-toolbar-left">
+                    <input class="m-input m-btn-icon-right m-icon-search" placeholder="Tìm theo mã,tên nhân viên" style="width: 200px;"/>
+                </div>
+                <div class="m-toolbar-right">
+                    <button class="m-icon-refresh"></button>
+                </div>
+            </div>
+            <div class="m-page-grid">
+                    <div class="m-grid">
+                        <table id="tblEmployee" class="m-table">
+                            <thead>
+                             <tr>
+                                <th><input type="checkbox" class="m-select-row"></th>
+                                 <th class="m-employee-code">MÃ NHÂN VIÊN</th>
+                                 <th class="m-hoten">TÊN NHÂN VIÊN</th>
+                                 <th class="m-gioitinh">GIỚI TÍNH</th>
+                                 <th class="m-ngaysinh">NGÀY SINH</th>
+                                 <th class="m-cmnd">SỐ CMND</th>
+                                 <th class="m-hoatdong">CHỨC DANH</th>
+                                 <th>TÊN ĐƠN VỊ</th>
+                                 <th>SỐ TÀI KHOẢN</th>
+                                 <th>TÊN NGÂN HÀNG</th>
+                                 <th>CHI NHÁNH TK NGÂN HÀNG</th>
+                                 <th class="m-option">CHỨC NĂNG</th>
+                             </tr>       
+                            </thead>     
+                            <tbody>
+                            </tbody>
+                            </table>
+                    </div>
+                   
+                    <div class="m-page">
+                        <div class="m-page-left">
+                            Tổng số:1035 bản ghi
+                        </div>
+                        <div class="m-page-right">
+                            <div class="m-number-page">
+                                <select name="" id="">
+                                    <option>10 bản ghi trên 1 trang</option>
+                                    <option>20 bản ghi trên 1 trang</option>
+                                    <option>30 bản ghi trên 1 trang</option>
+                                    <option>50 bản ghi trên 1 trang</option>
+                                    <option>100 bản ghi trên 1 trang</option>
+                                </select>
+                            </div>
+                            <div class="m-number">
+                                <label for="">Trước</label>
+                                <button class="m-page-selected">1</button>
+                            <button >2</button>
+                            <button >3</button>
+                            <button >4</button>
+                            <label for="">Sau</label>
+                            </div>
+                           
+                        </div>
+                    </div>   
+            </div>
+            <!-- dialog thêm mới 1 nhân viên -->
+            <div id="dialogadd" class="m-dialog">
+                <div class="m-dialog-content">
+                    <div class="m-dialog-header">
+                        <div class="m-dialog-title">
+                            Thông tin nhân viên
+                        </div>
+                        <div class="m-dialog-khachhang">
+                            <input type="checkbox"/>
+                            <label for="">Là khách hàng</label>
+                        </div>
+                        <div class="m-dialog-ncc">
+                            <input type="checkbox"/>
+                            <label for="">Là nhà cung cấp</label>
+                        </div>
+                        <button id="dialog-close" class="m-dialog-close m-icon-cancel">
+                                
+                        </button>
+                    </div>
+                    <div class="m-dialog-body">
+                        <div class="m-row-1">
+                           <div class="m-row-1-left">
+                            <div class="m-dialog-employcode">
+                                <div><label for="">Mã</label><i class="required">*</i></div>
+                                <div><input class="m-input" id="txtEmployeeCode" type="text" required></div>
+                            </div>
+                            <div class="m-dialog-employee-name">
+                                <div><label for="">Tên<i class="required">*</i></label></div>
+                                <div><input id="txtEmployeeName" class="m-input"  type="text" required></div>
+                            </div>
+                           </div>
+                           <div class="m-row-1-right">
+                            <div class="m-dialog-employee-dob">
+                                <div><label for="">Ngày sinh</label></div>
+                                <div><input class="m-input"  type="date" id="txtDateofBrith"></div>
+                            </div>
+                            <div class="m-dialog-employee-gender">
+                                <div><label for="">Giới tính</label></div>
+                                <div style="display: flex; height: 40px;justify-content: center;align-items: center;">
+                                    <input class=""  type="radio" value="1" id="txtNam" name="gender"><label for="">Nam</label> 
+                                    <input class=""  type="radio" value="0" id="txtNu" name="gender"><label for="">Nữ</label>
+                                    <input class=""  type="radio" value="2" id="txtKhac" name="gender"><label for="">Khác</label>
+                                </div>
+                            </div>
+                           </div>
+                        </div>
+                        <div class="m-row-2">
+                            <div class="m-dialog-donvi">
+                                <div><label for="">Đơn vị <i class="required">*</i></label></div>
+                                <div><select  name="donVi" id="cboDonVi">
+                                    <option value="nhanSu">Phòng nhân sự</option>
+                                    <option value="keToan">Phòng kế toán</option>
+                                </select></div>
+                            </div>
+                            <div class="m-dialog-cmnd">
+                                <div><label for="">Số CMND</label></div>
+                                <div><input class="m-input"  type="text" id="txtsoCMND"></div>
+                            </div>
+                            <div class="m-dialog-ngay-cap">
+                                <div><label for="">Ngày cấp</label></div>
+                                <div><input class="m-input"  type="date" name="" id="txtngayCap"></div>
+                            </div>
+                        </div>
+                        <div class="m-row-3">
+                            <div class="m-dialog-chuc-danh">
+                                <div><label for="">Chức danh</label></div>
+                                <div><input  class="m-input" type="text" id="txtPosition"></div>
+                            </div>
+                            <div class="m-dialog-noi-cap">
+                                <div><label for="">Nơi cấp</label></div>
+                                <div><input class="m-input"  type="text" id="txtNoiCap"></div>
+                            </div>
+                        </div>
+                        <div class="m-row-4">
+                            <div class="m-dialog-address">
+                                <div><label for="">Địa chỉ</label></div>
+                                <div><input class="m-input"  type="text" id="txtAddress"></div>
+                            </div>
+                        </div>
+                        <div class="m-row-5">
+                            <div class="m-dialog-phone-number">
+                                <div><label for="">Điện thoại di đông</label></div>
+                                <div><input class="m-input"  type="text" id="txtPhoneNumber"></div>
+                            </div>
+                            <div class="m-dialog-phone">
+                                <div><label for="">Điện thoại cố định</label></div>
+                                <div><input class="m-input"  type="text" id="txtPhone"></div>
+                            </div>
+                            <div class="m-dialog-email">
+                                <div><label for="">Email</label></div>
+                                <div><input class="m-input"  type="text" id="txtEmail"></div>
+                            </div>
+                        </div>
+                        <div class="m-row-6">
+                            <div class="m-dialog-phone-account-bank">
+                                <div><label for="">Tài khoản ngân hàng</label></div>
+                                <div><input class="m-input"  type="text" id="txtAccountBank"></div>
+                            </div>
+                            <div class="m-dialog-bank-name">
+                                <div><label for="">Tên ngân hàng</label></div>
+                                <div><input class="m-input"  type="text" id="txtBankName"></div>
+                            </div>
+                            <div class="m-dialog-chi-nhanh">
+                                <div><label for="">Chi nhánh</label></div>
+                                <div><input class="m-input"  type="text" id="txtChiNhanh"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="m-dialog-footer">
+                       <div class="m-dialog-footer-left"> <button id="m-btn-add-cancle" class="m-btn m-btn-nocolor ">Hủy</button></div>
+                        <div class="m-dialog-footer-right">
+                            <button id="" class="m-btn m-btn-nocolor m-btn-cat">Cất</button>
+                            <button id="btnSave" class="m-btn">Cất và thêm</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- trạng thái chờ loading dữ liệu -->
+    <div class="m-loading">
+        <div class="m-loading-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="32" height="32" viewBox="0 0 32 32"><title>32px_dots 06</title><g class="nc-loop_dots-06-32" transform="rotate(45 16 16)"><circle fill="#2ca01c" cx="16" cy="3" r="3"/><circle fill="#2ca01c" cx="25.19239" cy="6.80761" r="3" opacity="0.4"/><circle fill="#2ca01c" cx="29" cy="16" r="3" opacity="0.4"/><circle fill="#2ca01c" cx="25.19239" cy="25.19239" r="3" opacity="0.4"/><circle fill="#2ca01c" cx="16" cy="29" r="3" opacity="0.4"/><circle fill="#2ca01c" cx="6.80761" cy="25.19239" r="3" opacity="0.4"/><circle fill="#2ca01c" cx="3" cy="16" r="3" opacity="0.6"/><circle fill="#2ca01c" cx="6.80761" cy="6.80761" r="3" opacity="0.8"/></g></svg>
+        </div>
+    </div>
+    <!-- Danh sách các chức năng tùy chỉnh nhân viên -->
+    <div id="optionlist" class="m-btn-options-list">
+        <div class="m-option-item"><label for="">Nhân bản</label></div>
+        <div id="hideoption" class="m-option-item"><label for="">Xóa</label></div>
+        <div class="m-option-item"><label for="">Ngưng sử dụng</label></div>
+    </div>
+    <!-- form xác nhận xóa -->
+    <div id="show-dialog-confirm-del" class="m-dialog">
+        <div class="m-dialog-confirm-del-content">
+            <div class="m-dialog-confirm-del-header ">
+                <div class="m-icon-confirm-delete"></div>
+               <label for="">Bạn có thực sự muốn xóa không</label>
+            </div>
+            <div class="m-dialog-confirm-del-btn">
+                <div class="m-dialog-confirm-del-no">
+                    <button id="m-dialog-confirm-del-no" class="m-btn m-btn-nocolor">Không</button>
+                </div>
+                <div class="m-dialog-confirm-del-yes">
+                    <button id="m-dialog-confirm-del-yes" class="m-btn">Có</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- thư viên js -->
+    <script src="/js/jquery-3.7.1.min.js"></script>
+    <script src="/js/resources.js"></script>
+   
+    <!-- js dùng chung -->
+    <script src="/js/pagejs/main.js"></script>
+    <script src="/js/pagejs/employ.js"></script>
+    <!-- js dùng riêng cho trang-->
+</body>
+</html>

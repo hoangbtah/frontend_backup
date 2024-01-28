@@ -1,0 +1,46 @@
+.m-btn {
+    text-align: center;
+    padding: 0 24px;
+    height: 40px;
+    border-radius: 4px;
+    border: none;
+    background-color: #019160;
+    color: #fff;
+    min-width: 100px;
+}
+.m-btn:hover{
+    background-color: #2FBE8E;
+}
+.m-btn-icon{
+    background-repeat: no-repeat;
+    background-position: 16px center;
+    background-size: 16px 16px;
+    /* padding-left: 100px; */
+}
+.m-btn-icon-right{
+    right: 0;
+}
+.m-btn-icon-add{
+    background-image: url(/assets/img/favicon.ico);
+}
+.m-btn.m-btn-nocolor{
+    background-color: white;
+    color: black;
+    border: 1px solid #333;
+}
+
+.m-btn-options-list{
+    border: 1px solid #333;
+    width: 100px;
+    z-index: 10000;
+    display: none;
+    background-color: #fff;
+}
+.m-btn-options-list .m-option-item{
+    font-family: Googlesand Regular ;
+}
+.m-btn-options-list .m-option-item:hover{
+    background-color:rgb(240, 226, 226);
+    color: #31e451;
+}
+

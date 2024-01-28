@@ -1,0 +1,75 @@
+.m-table{
+    width: 100%;
+    /* background-color: #00ffff; */
+    /* border: unset; */
+    border:1px solids ;
+    border-collapse: collapse;
+   
+
+}
+.m-table tr th{
+    font-family:Googlesand Bolds ;
+    font-size: 13px;
+}
+
+.m-table tr td{
+    font-family: Googlesand Regular ;
+    font-size: 13px;
+}
+.m-table .m-content-left{
+    text-align: left;
+}
+.m-table .m-content-center{
+    text-align: center;
+    align-items: center;
+}
+.m-table .m-content-right{
+    text-align: right;
+}
+.m-table .m-option{
+    text-align: center;
+    min-width: 50px;
+}
+.m-table .m-employee-code{
+   min-width: 15px;
+}
+.m-table .m-hoten{
+    width: 200px;
+}
+.m-table .m-gioitinh{
+    min-width: 30px;
+}
+.m-table .m-ngaysinh{
+    min-width: 100px;
+}
+.m-table .m-cmnd{
+    min-width: 100px;
+
+}
+.m-table .m-hoatdong{
+    width: 20px;
+}
+
+.m-table tr{
+    height: 20px;
+    border-bottom:1px solid #333 ;
+}
+.m-table tr:hover{
+    background-color: #e5e5e5;
+}
+.m-table tbody tr.m-table-selected{
+    background-color: #019160;
+}
+.m-grid{
+    position: absolute;
+    top: 0;
+    bottom: 56px;
+    width: 100%;
+    overflow-y: auto;
+}
+.m-table th{
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background-color:#fff;
+}

@@ -1,0 +1,79 @@
+.m-page-header{
+    height:48px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+.m-page-header .m-page-title{
+    font-size: 24px;
+
+}
+.m-page-toolbar{
+    height: 48px;
+    width: 100%;
+   position: relative;
+   display: flex;
+   align-items: center;
+   background-color: #fff;
+}
+.m-page-grid{
+    width: 100%;
+    height: calc(100% - 96px); 
+    background-color: #fff;
+}
+
+.m-page-header .m-page-button{
+    position: absolute;
+    right: 0px;
+}
+.m-page-toolbar .m-toolbar-left{
+    position: absolute;
+    right: 0;
+    margin-right: 60px;
+}
+.m-page-toolbar .m-toolbar-right{
+    position: absolute;
+    right: 0;
+    text-align: right;
+}
+.m-page-toolbar .m-toolbar-right button{
+    background-color: #fff;
+    border: none;
+}
+.m-page-toolbar .m-toolbar-right .m-icon-refresh{
+   width: 44px;
+   height: 44px;
+   background-image: url(/assets/icon/refresh.png);
+   background-repeat: no-repeat;
+   background-position: center;
+   background-size: 24px;
+   /* border-radius: 4px; */
+   /* border: 1px solid #bbb; */
+   cursor: pointer; 
+}
+/* .m-show-options{
+   display: flex;
+} */
+.m-show-options{
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.m-show-options .m-btn-show{
+    display: flex;
+    justify-content: center;
+}
+.m-btn-show button{
+    width: 16px;
+    height: 10px;
+    margin-left: 5px;
+   border: none;
+}
+
+
+
+
+
+
+

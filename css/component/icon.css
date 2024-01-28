@@ -1,0 +1,123 @@
+.m-icon{
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+.m-icon-notice{
+    background-position: center;
+    flex-shrink: 0;
+
+    background: url('/assets/img/Sprites.64af8f61.svg') no-repeat -844px -520px;
+	width: 18px;
+	height: 19px;
+    
+}
+
+.m-icon-logo{
+    background-image: url(/assets/img/favicon.ico);
+    background-repeat: no-repeat;
+    background-size: 16px;
+    background-position: center;
+}
+.m-icon-refresh{
+    background-image: url(/assets/icon/refresh.png);
+    background-repeat: no-repeat;
+    background-size: 16px 16px;
+    background-position: center;
+}
+.m-icon-search{
+    background-image: url(/assets/icon/search.png);
+    background-repeat: no-repeat;
+    background-size: 16px 16px;
+    background-position: 200px center;
+}
+.m-icon-overview{
+    background-image: url(/assets/icon/dashboard.png);
+    background-repeat: no-repeat;
+    background-size: 20px;
+    background-position: center;
+}
+.m-icon-cash{
+    background: url(/assets/img/Sprites.64af8f61.svg) no-repeat -78px -1631px;
+}
+.m-icon-deposits{
+    background: url('/assets/img/Sprites.64af8f61.svg')  no-repeat -121px -1633px;
+}
+.m-icon-purchase{
+    background: url('/assets/img/Sprites.64af8f61.svg') no-repeat -165px -1632px;
+}
+.m-icon-sell{
+    background: url('/assets/img/Sprites.64af8f61.svg')  no-repeat -206px -1631px;
+}
+.m-icon-invoice-management{
+    background: url('/assets/img/Sprites.64af8f61.svg')  no-repeat -254px -1632px;
+}
+.m-icon-warehouse{
+    background: url('/assets/img/Sprites.64af8f61.svg')  no-repeat -294px -1632px;
+}
+.m-icon-tools{
+    background: url('/assets/img/Sprites.64af8f61.svg')  no-repeat -339px -1633px;
+}
+.m-icon-asset{
+    background: url('/assets/img/Sprites.64af8f61.svg')  no-repeat -382px -1632px;
+}
+.m-icon-tax{
+    background: url('/assets/img/Sprites.64af8f61.svg')  no-repeat -427px -1634px;
+}
+.m-icon-price{
+    background: url('/assets/img/Sprites.64af8f61.svg')  no-repeat -470px -1633px;
+}
+.m-icon-synthetic{
+    background: url('/assets/img/Sprites.64af8f61.svg')  no-repeat -514px -1632px;
+}
+.m-icon-budget{
+    background: url('/assets/img/Sprites.64af8f61.svg')  no-repeat -552px -1636px;
+}
+.m-icon-financial-analysis{
+    background: url('/assets/img/Sprites.64af8f61.svg') no-repeat -636px -1631px;
+}
+.m-icon-show-options{
+    background: url('/assets/img/Sprites.64af8f61.svg') no-repeat -900px -365px;
+	width: 20px;
+	height: 20px;
+}
+
+
+.m-icon-document{
+    background-image: url(/assets/icon/document-online.png);
+    background-repeat: no-repeat;
+    background-size: 20px;
+    background-position: center;
+}
+.m-icon-employees{
+    background-image: url(/assets/icon/dic-employee.png);
+    background-repeat: no-repeat;
+    background-size: 20px;
+    background-position: center;
+}
+.m-icon-report{
+    background-image: url(/assets/icon/report.png);
+    background-repeat: no-repeat;
+    background-size: 20px;
+    background-position: center;
+}
+.m-icon-default-avatar{
+    background-image: url(/assets/img/default-avatar.jpg);
+    background-repeat: no-repeat;
+    background-size: 16px;
+    background-position: center;
+}
+.m-icon-cancel{
+    background-image: url(/assets/icon/x.svg);
+    background-repeat: no-repeat;
+    background-size: 24px;
+    background-position: center;
+}
+.m-icon-confirm-delete{
+    background: url('/assets/img/Sprites.64af8f61.svg') no-repeat -817px -145px;
+	width: 24px;
+	height: 24px;
+    margin-right: 10px;
+}
+
+

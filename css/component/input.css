@@ -1,0 +1,18 @@
+.m-input{
+    height: 40px;
+    padding:0 16px 0 12px ;
+    color: #333;
+    border-width: 1px;
+    border-radius: 4px;
+    /* border-color: #000; */
+    font-family: Googlesand Regular ;
+
+}
+.m-input-focus{
+    border-color: #019160;
+
+
+}
+.m-input-error{
+    border-color: red;
+}

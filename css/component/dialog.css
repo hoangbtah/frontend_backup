@@ -1,0 +1,268 @@
+.m-dialog{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #bbbbbba1;
+    display: none;
+    z-index: 10;
+}
+.m-dialog .m-dialog-content{
+    position: absolute;
+    width: 800px;
+    background-color: #fff;
+    transform: translate(-50% ,-50%);
+    top: 50%;
+    left: 50%;
+    padding: 24px;
+}
+.m-dialog .m-dialog-content .m-dialog-header{
+    margin: 24px;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+.m-dialog .m-dialog-content .m-dialog-header .m-dialog-title{
+    font-size: 24px;
+    /* position: absolute; */
+    left: 0;
+}
+
+.m-dialog .m-dialog-header label{
+    font-family: Googlesand Regular ;
+    font-size: 15px;
+}
+.m-dialog .m-dialog-header button.m-dialog-close{
+    position: fixed;
+    text-align: center;
+    /* font-size: 20px;
+    color: red; */
+    right: 0px;
+    top: 0;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    border: none;
+    /* border: none;
+    background-color: blanchedalmond; */
+}
+
+.m-dialog .m-dialog-header button.m-dialog-close:hover{
+   /* background-color: #ccc; */
+
+}
+.m-dialog .m-dialog-footer{
+    display: flex;
+    /* padding: 24px; */
+    margin-top: 16px;
+    height: 60px;
+    align-items: center;
+}
+.m-dialog .m-dialog-footer .m-dialog-footer-left{
+    margin-left: 24px;
+}
+.m-dialog .m-dialog-footer .m-dialog-footer-right{
+   right: 0;
+    text-align: right;
+    margin-right: 24px;
+    box-sizing: border-box;
+    width: 100%;
+}
+.m-dialog .m-dialog-footer .m-dialog-footer-right .m-btn-cat{
+    margin-right: 16px;
+}
+.m-dialog .m-dialog-empty-content{
+    position: absolute;
+    width: 400px;
+    background-color:white;
+    transform: translate(-50% ,-50%);
+    top: 50%;
+    left: 50%;
+    padding: 24px;
+    
+}
+.m-dialog .m-dialog-empty-content .m-dialog-empty-header{
+   line-height: 50px;
+    border-bottom: 1px solid #333;
+    height:50px ;
+    
+}
+.m-dialog .m-dialog-empty-content .m-dialog-empty-btn{
+    text-align: center;
+    margin: 20px;
+}
+
+.m-dialog .m-dialog-exits-code-content{
+    position: absolute;
+    width: 400px;
+    background-color:white;
+    transform: translate(-50% ,-50%);
+    top: 50%;
+    left: 50%;
+    padding: 24px;
+    
+}
+.m-dialog .m-dialog-exits-code-content .m-dialog-exits-code-header{
+  
+    border-bottom: 1px solid #333;
+    height:50px ;
+    word-wrap: break-word;
+    
+}
+.m-dialog .m-dialog-exits-code-content .m-dialog-exits-code-btn {
+    
+   text-align: right;
+
+}
+.m-dialog .m-dialog-exits-code-content .m-dialog-exits-code-btn button{
+   margin:20px 0;
+
+}
+/* // dialog xác nhận xóa  */
+.m-dialog .m-dialog-confirm-del-content{
+    position: absolute;
+    width: 400px;
+    background-color:white;
+    transform: translate(-50% ,-50%);
+    top: 50%;
+    left: 50%;
+}
+
+.m-dialog .m-dialog-confirm-del-content .m-dialog-confirm-del-header{
+    border-bottom: 1px solid #333;
+    height:50px ;
+    word-wrap: break-word;
+    position: relative;
+    display: flex;
+    margin: 24px;
+    align-items: center;
+}
+.m-dialog .m-dialog-confirm-del-content .m-dialog-confirm-del-btn
+{
+    display: flex;
+    height: 60px;
+}
+.m-dialog .m-dialog-confirm-del-content .m-dialog-confirm-del-btn button{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    /* text-align: center; */
+    height: 40px;
+}
+.m-dialog .m-dialog-confirm-del-content .m-dialog-confirm-del-btn .m-dialog-confirm-del-no {
+    margin-left: 24px;
+    left: 0;
+     position: absolute;
+  }
+.m-dialog .m-dialog-confirm-del-content .m-dialog-confirm-del-btn .m-dialog-confirm-del-yes {
+  margin-right: 24px;
+  right: 0;
+   position: absolute;
+}
+/* dialog thêm mới nhân viên */
+.m-dialog .m-dialog-content .m-dialog-body{
+    margin: 24px;
+    border-bottom: 1px solid #333;
+}
+.m-dialog .m-dialog-content .m-dialog-body .m-row-1{
+    display: flex;
+    margin-top: 16px;
+}
+.m-dialog .m-dialog-content .m-dialog-body .m-row-1-left{
+    display: flex;
+    width: 352px;
+    margin-right: 48px;
+}
+.m-dialog .m-dialog-content .m-dialog-body .m-row-1-left .m-dialog-employcode{
+    margin-right: 16px;
+    flex-shrink: 0;
+}
+.m-dialog .m-dialog-content .m-dialog-body .m-row-1-left .m-dialog-employee-name .m-input{
+    width: 202px;
+    box-sizing: border-box;
+}
+.m-dialog .m-dialog-content .m-dialog-body .m-row-1-left .m-dialog-employcode .m-input{
+    box-sizing: border-box;
+    width: 134px;
+}
+.m-dialog .m-dialog-content .m-dialog-body .m-row-1-right{
+    display: flex;
+    width: 352px;
+}
+.m-dialog .m-dialog-content .m-dialog-body .m-row-1-right .m-dialog-employee-dob{
+    margin-right: 16px;
+    flex-shrink: 0;
+}
+.m-dialog .m-dialog-content .m-dialog-body .m-row-1-right .m-dialog-employee-gender .m-input{
+    width: 202px;
+    box-sizing: border-box;
+}
+.m-dialog .m-dialog-content .m-dialog-body .m-row-1-right .m-dialog-employee-dob .m-input{
+    box-sizing: border-box;
+    width: 134px;
+}
+.m-dialog .m-dialog-content .m-dialog-body .m-row-2{
+    display: flex;
+    margin-top: 16px;
+}
+.m-dialog .m-dialog-content .m-dialog-body .m-row-2 .m-dialog-donvi {
+    padding-right: 48px;
+}
+.m-dialog .m-dialog-content .m-dialog-body .m-row-2 .m-dialog-donvi select{
+    width: 352px;
+    box-sizing: border-box;
+}
+.m-dialog .m-dialog-content .m-dialog-body .m-row-2 .m-dialog-cmnd{
+    margin-right: 16px;
+    flex-shrink: 0;
+}
+.m-dialog .m-dialog-content .m-dialog-body .m-row-2 .m-dialog-ngay-cap .m-input{
+    width: 134px;
+    box-sizing: border-box;
+}
+.m-dialog .m-dialog-content .m-dialog-body .m-row-2 .m-dialog-cmnd .m-input{
+    box-sizing: border-box;
+    width: 202px;
+}
+.m-dialog .m-dialog-content .m-dialog-body .m-row-3{
+    display: flex;
+    margin-top: 16px;
+}
+.m-dialog .m-dialog-content .m-dialog-body .m-row-3 .m-dialog-chuc-danh{
+    margin-right: 48px;
+}
+.m-dialog .m-dialog-content .m-dialog-body .m-row-3 .m-input{
+    width: 352px;
+    box-sizing: border-box;
+}
+.m-dialog .m-dialog-content .m-dialog-body .m-row-4{
+    display: flex;
+    margin-top: 16px;
+   
+}
+.m-dialog .m-dialog-content .m-dialog-body .m-row-4 .m-input{
+    /* width: calc(800px-16px-12px-50px); */
+    width: 722px;
+}
+.m-dialog .m-dialog-content .m-dialog-body .m-row-5{
+    display: flex;
+    margin-top: 16px;
+}
+.m-dialog .m-dialog-content .m-dialog-body .m-row-5 .m-input{
+    margin-right: 16px;
+}
+.m-dialog .m-dialog-content .m-dialog-body .m-row-6{
+    display: flex;
+    margin-top: 16px;
+    margin-bottom: 24px;
+}
+.m-dialog .m-dialog-content .m-dialog-body .m-row-6 .m-input{
+    margin-right: 16px;
+}
+.m-dialog .required{
+    color: red;
+}
+
+
+ 
+

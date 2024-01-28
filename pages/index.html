@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="../css/main.css" />
+   
+</head>
+<body>
+    <div class="m-button">
+        <button class="m-login">Đăng nhập</button>
+    </div>
+    <div class="m-row">
+        <input class="m-input m-btn-icon m-btn-icon-add" placeholder="Tìm kiếm theo"/>
+    </div>
+        <div class="m-row" >
+            <table class="m-table">
+            <thead>
+             <tr class="m-table-selected">
+                 <th class="m-stt">STT</th>
+                 <th class="m-hoten">Họ và tên</th>
+                 <th class="m-diachi">Địa chỉ</th>
+                 <th class="m-ngaysinh">Ngày sinh</th>
+                 <th class="m-luong">Lương</th>
+                 <th class="m-hoatdong">Hoạt động</th>
+             </tr>       
+            </thead>     
+            <tbody>
+             <tr class="">
+                 <td class="m-content-left">1</td>
+                 <td class="m-content-left">Bùi Việt Hoàng</td>
+                 <td class="m-content-center"> 
+                    <div class="m-show-options m-content-center" >
+                     <div class="m-btn-show">
+                       <div><label for="">Sửa</label></div>
+                        <div><button id="m-show"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                      </svg></button></div>
+                    </div> 
+                    <div id="optionlist" class="m-btn-options-list">
+                      <div class="m-option-item">Nhân bản</div>
+                      <div id="hideoption" class="m-option-item">Xóa</div>
+                      <div class="m-option-item">Ngưng sử dụng</div>
+                     </div>
+                    </div>
+             </td>
+                 <td class="m-content-center">18/08/2002</td>
+                 <td class="m-content-right" >10.000.000</td>
+                 <td class="m-content-center">
+                     <input type="checkbox" class="m-table-selected"/>
+                 </td>
+             </tr>
+             <tr>
+                 <td class="m-content-left">1</td>
+                 <td class="m-content-left">Bùi Việt Hoàng</td>
+                 <td class="m-content-left">Thái Bình</td>
+                 <td class="m-content-center">18/08/2002</td>
+                 <td class="m-content-right" >10.000.000</td>
+                 <td class="m-content-center">
+                     <input type="checkbox" class="m-table-selected" />
+                 </td>
+             </tr>
+             <tr >
+                 <td class="m-content-left">1</td>
+                 <td class="m-content-left">Bùi Việt Hoàng</td>
+                 <td class="m-content-center"> 
+                    <div class="m-show-options m-content-center" style="display: flex;">
+                     <div class="m-btn-show">
+                       <div><label for="">Sửa</label></div>
+                        <div><button id="m-show"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                      </svg></button></div>
+                    </div> 
+                    <div id="optionlist" class="m-btn-options-list">
+                      <div class="m-option-item">Nhân bản</div>
+                      <div id="hideoption" class="m-option-item">Xóa</div>
+                      <div class="m-option-item">Ngưng sử dụng</div>
+                     </div>
+                    </div>
+             </td>
+                 <td class="m-content-center">18/08/2002</td>
+                 <td class="m-content-right" >10.000.000</td>
+                 <td class="m-content-center">
+                     <input type="checkbox" class="m-table-selected" />
+                 </td>
+             </tr>
+            </tbody>
+            </table>
+            <div class="m-page">
+                <div class="m-page-left">
+                    Trang
+                </div>
+                <div class="m-page-center ">
+                    <button class="m-page-selected">1</button>
+                    <button >2</button>
+                    <button >3</button>
+                    <button >4</button>  
+                </div>
+                <div class="m-page-right">
+                    Tìm trong khoảng
+                    <select name="" id="">
+                        <option>5</option>
+                        <option>10</option>
+                        <option>15</option>
+                    </select>
+                </div>
+            </div> 
+    </div>
+    <div class="m-dialog">
+        <div class="m-dialog-content">
+            1. bạn có muốn xóa không
+        </div>
+    </div>
+    <div class="m-row">
+        <label for="">1.button</label>
+        <div class="m-row">
+            <button id="show-dialog" class="m-btn">Đồng ý</button>
+        </div>
+    </div>
+    <div class="m-row">
+        <label for="">2.button</label>
+        <div class="m-row">
+            <button id="showtoast" class="m-btn m-btn-icon m-btn-icon-add">Đồng ý</button>
+        </div>
+    </div>
+    <div class="m-row">
+        <label for="">5. toast massage</label>
+        <button id="show-toast">show toast message</button>
+        <div class="m-toast-box">
+            <div class="m-toast-item m-toast-error">
+                <div class="m-toast-icon">
+
+                </div>
+                <div class="m-toast-text">
+                    Nội dung đi kèm tiêu đề.
+                </div>
+                <div class="m-toast-close">
+                    
+                </div>
+            </div>
+            <div class="m-toast-item m-toast-susscess">
+                <div class="m-toast-icon">
+
+                </div>
+                <div class="m-toast-text">
+                    Nội dung đi kèm tiêu đề.
+                </div>
+                <div class="m-toast-close">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="m-button-options">
+        
+        <div class="m-show-options">
+            <label for="">Sửa</label>
+            <button id="m-show">Show</button>
+            <div class="m-btn-options-list" style="display: none;">
+                <div class="m-option-item">Nhân bản</div>
+                <div class="m-option-item">Xóa</div>
+                <div class="m-option-item">Ngưng sử dụng</div>
+                </div>
+        </div>
+    </div>
+    <div class="menu-item">
+        <div class="menu-icon m-icon-report">
+            
+        </div>
+        <div class="menu-text">
+            Bán hàng
+        </div>
+    </div>
+    <div class="menu-item">
+        <div class="menu-icon m-icon-test2">
+           
+        </div>
+        <div class="menu-text">
+            Quản lý hóa đơn 
+            
+        </div>
+    </div>
+    <div class="menu-item">
+        <div class="menu-icon m-icon-test">
+            
+        </div>
+        <div class="menu-text">
+            Kho
+        </div>
+    </div>
+    <select name="" id="">
+        <option style="display: none;" value="">Sửa</option>
+        <option value="">Xóa</option>
+        <option value="">Nhân bản</option>
+        <option value="">Ngưng sử dụng</option>
+
+    </select>
+    
+    <div class="m-row">
+        <label for="">1.button</label>
+        <div class="m-row">
+            <button id="btn-show-dialog-empty" class="m-btn">Không để trống dữ liệu</button>
+        </div>
+    </div>
+    </div>
+    <div id="show-dialog-empty" class="m-dialog">
+        <div class="m-dialog-empty-content">
+            <div class="m-dialog-empty-header  m-btn-icon m-btn-icon-add">
+                Tên không được để trống
+            </div>
+            <div class="m-dialog-empty-btn"><button id="m-btn-hide-dialog-empty" class="m-btn">Đóng</button></div>
+        </div>
+    </div>
+    <div class="m-row">
+        <label for="">1.button tồn tại mã trong hệ thông</label>
+        <div class="m-row">
+            <button id="btn-show-dialog-exits-code" class="m-btn">Mã nhân viên đã tồn tại trong hệ thống, vui lòng kiểm tra lại</button>
+        </div>
+    </div>
+    </div>
+
+    <div id="show-dialog-exits-code" class="m-dialog">
+        <div class="m-dialog-exits-code-content">
+            <div class="m-dialog-exits-code-header  m-btn-icon m-btn-icon-add">
+               <label for=""> Mã nhân viên đã tồn tại trong hệ thống, vui lòng kiểm tra lại</label>
+            </div>
+            <div class="m-dialog-exits-code-btn"><button id="m-btn-hide-dialog-exits-code" class="m-btn">Đồng ý</button></div>
+        </div>
+    </div>
+
+    <div class="m-row">
+        <label for="">1.xác nhận xóa</label>
+        <div class="m-row">
+            <button id="btn-show-dialog-confirm-del" class="m-btn">xác nhân xóa</button>
+        </div>
+    </div>
+    </div>
+    <div id="show-dialog-confirm-del" class="m-dialog">
+        <div class="m-dialog-confirm-del-content">
+            <div class="m-dialog-confirm-del-header ">
+                <div class="m-icon-confirm-delete"></div>
+               <label for="">Bạn có thực sự muốn xóa không</label>
+            </div>
+            <div class="m-dialog-confirm-del-btn">
+                <div class="m-dialog-confirm-del-no">
+                    <button id="m-dialog-confirm-del-no" class="m-btn m-btn-nocolor">Không</button>
+                </div>
+                <div class="m-dialog-confirm-del-yes">
+                    <button id="m-dialog-confirm-del-yes" class="m-btn">Có</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+
+    <script src="/js/jquery-3.7.1.min.js"></script>
+    <!-- js dùng chung -->
+    <script src="/js/pagejs/main.js"></script>
+    <script>
+
+     document.getElementById("m-show").addEventListener("click",function(){
+        var toastBox= document.getElementsByClassName("m-btn-options-list")
+       toastBox[0].style.display="block";
+       setTimeout(()=>{
+        toastBox[0].style.display="none";
+       },10000
+       );
+     })
+     document.getElementById("show-dialog").addEventListener("click",function(){
+        var toastBox= document.getElementsByClassName("m-dialog")
+       toastBox[0].style.display="block";
+       setTimeout(()=>{
+        toastBox[0].style.display="none";
+       },3000
+       );
+     })
+     document.getElementById("show-dialog-empty").addEventListener("click",function(){
+        var toastBox= document.getElementsByClassName("m-dialog-empty")
+       toastBox[0].style.display="block";
+       setTimeout(()=>{
+        toastBox[0].style.display="none";
+       },3000
+       );
+     })
+    </script>
+</body>
+</html>

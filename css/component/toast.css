@@ -1,0 +1,40 @@
+.m-toast-box{
+    position: fixed;
+    bottom: 0;
+    right: 10px;  
+    display: none;
+    
+}
+.m-toast-box .m-toast-item{
+   
+    box-shadow: #000 4px 1px 6px;
+    border-radius: 4px;
+    color: #000;
+    display: flex;
+    padding: 16px;
+    align-items: center;
+    margin-top: 8px;
+    margin-left: 8px;
+}
+.m-toast-box .m-toast-item .m-toast-icon{
+    width: 24px;
+    height: 24px;
+    background-image: url(../assets/img/favicon.ico);
+    background-size: 24px;
+}
+.m-toast-box .m-toast-item .m-toast-text{
+    color: #000;
+    margin: 0 8px;
+}
+.m-toast-box .m-toast-item .m-toast-close{
+    width: 24px;
+    height: 24px;
+    background-image: url(../assets/img/loading.svg);
+  background-size: 24px;
+}
+.m-toast-box .m-toast-item.m-toast-error{
+    background-color: red;
+}
+.m-toast-box .m-toast-item.m-toast-susscess{
+    background-color: greenyellow;
+}
