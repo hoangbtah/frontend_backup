@@ -4,7 +4,8 @@ $(document).ready(function() {
     // loading dữ liệu
     loadData();
     var forMode="edit";
-    var employeeId=null;
+    var empId=null;
+    var empdel=null;
     // thực hiên gán các sự kiện
     // nhấn vào nút thêm mới nhân viên
    add_employee();
@@ -13,9 +14,6 @@ $(document).ready(function() {
     // ấn buttom show để xem chức năng nút bên cạnh nút sửa 
     show_options_employee();
   //  ấn vào nút xóa để ẩn chức năng
-  // $(document).on("click","#hideoption",function(){
-  //   $("#optionlist").hide();
-  // })
   // ấn vào nút hủy của formm thêm mới nhân viên để ẩn form 
   click_cancle_for_add_employee();
     
@@ -73,7 +71,7 @@ function loadData(){
         // let employeeCMND= employee.PersonalTaxCode;
         // let employeePosition= employee.PositionName;
         // let employeeDepartment= employee.DepartmentName;
-        // let employeeId= employee.employeeId
+      //  let employeeId= employee.employeeId;
         let employeeCode= employee.employeeCode;
         let employName= employee.employeeName;
         let employGender= employee.genderName;
@@ -154,9 +152,36 @@ function add_employee(){
 }
 // 4 show chức năng tùy chỉnh nhân viên 
 //created by BVHoang(14/01/02024)
+// function show_options_employee(){
+//   $(document).on('click', '.m-show', function() {
+//     //lấy ra vị trí của nút vừa ấn 
+//     var buttonPosition = $(this).offset();
+//     // css để hiển thị so với nút vừa ấn
+//     $('.m-btn-options-list').css({
+//       'position': 'absolute',
+//       'top': buttonPosition.top + 'px',
+//       'left': (buttonPosition.left-100) + 'px',
+//     });
+//     $("#optionlist").show();
+//     // lấy dữ liệu là khóa chính ở dòng 
+//     let employee= $(this).data("entity");
+//     employeeId=employee.employeeId;
+//     console.log(empId);
+//   })
+//   // ấn vào dòng bên cạnh để ẩn đi chức năng tùy chỉnh
+//   $(".m-table").on("click","tr",function(){
+//     $("#optionlist").hide();
+//   })
+// }
 function show_options_employee(){
-  $(document).on('click', '.m-show', function() {
-    //lấy ra vị trí của nút vừa ấn 
+  $(".m-table").on("click", ".m-show", function() {
+    // Xử lý khi nút được nhấn
+    // Lấy dữ liệu của cả dòng chứa nút
+    let rowData = $(this).closest("tr").data("entity");
+    console.log(rowData);
+    empdel =rowData.employeeId;
+    console.log(empdel);
+     //lấy ra vị trí của nút vừa ấn 
     var buttonPosition = $(this).offset();
     // css để hiển thị so với nút vừa ấn
     $('.m-btn-options-list').css({
@@ -165,11 +190,9 @@ function show_options_employee(){
       'left': (buttonPosition.left-100) + 'px',
     });
     $("#optionlist").show();
-  })
-  // ấn vào dòng bên cạnh để ẩn đi chức năng tùy chỉnh
-  $(".m-table").on("click","tr",function(){
-    $("#optionlist").hide();
-  })
+
+    // Tiếp tục xử lý dữ liệu cần thiết tại đây
+});
 }
 // 5 click button hủy trên form thêm mới để ẩn form 
 //created by BVHoang(14/01/02024)
@@ -184,13 +207,15 @@ function double_click_row(){
   $(".m-table").on("dblclick","tr",function(){
     forMode="edit";
     // lấy dữ liệu ở dòng lên form 
-      let employee= $(this).data("entity");
-      employeeId=employee.EmployeeId;
+       let employee= $(this).data("entity");
+       console.log(employee);
+       empId=employee.employeeId;
       $("#txtEmployeeCode").val(employee.employeeCode);
       $("#txtEmployeeName").val(employee.employeeName);
      // $("#dtDateOfBrith").val(employee.DateOfBirth);
       // hiển thị form 
       $("#dialogadd").show();
+      console.log(empId);
   })
 }
 // khi ấn nút cất và thêm của form thêm mới thì validate dữ liệu 
@@ -205,20 +230,28 @@ function click_save_add_employee(){
     // tiền lương phải là số
     let employeeCode= $("#txtEmployeeCode").val();
     let employeeName= $("#txtEmployeeName").val();
-    let dateOfBrith= $("#dtDateOfBrith").val();
-    let gender= $("#txtEmployeeCode").val();
-    let donVi=$("#cboDonVi").val();
-    let soCMND=$("#txtsoCMND").val();
-    let ngayCap=$("#ngayCap").val();
+    let dateOfBrith= $("#txtDateOfBrith").val();
+    // Xử lý sự kiện khi có thay đổi trạng thái của radio button
+//     $('input[type="radio"]').change(function() {
+//       // Lấy giá trị của radio button được chọn
+//       let gender = $('input[name="gender"]:checked').val();
+      
+//       // In giá trị ra console để kiểm tra
+//       console.log(gender);
+//  });
+    //let gender= $("#txtEmployeeCode").val();
+    let unit=$("#cboUnit").val();
+    let identityCode=$("#txtIdentityCode").val();
+    let identityDate=$("#txtidentityDate").val();
     let eployeePosition=$("#txtPosition").val();
-    let noiCap=$("#txtNoiCap").val();
+    let identityPlace=$("#txtIdentityPlace").val();
     let employeeAddress=$("#txtAddress").val();
     let employeePhoneNumber=$("#txtPhoneNumber").val();
     let employeePhone=$("#txtPhone").val();
     let employeeEmail=$("#txtEmail").val();
     let employeeBankAcount=$("#txtAccountBank").val();
     let employeeBankName=$("#txtBankName").val();
-    let chiNhanh=$("#txtChiNhanh").val();
+    let branch=$("#txtBranch").val();
     // let salary= $("#txtSalary").val();
     if(employeeCode== null||employeeCode===""){
       // alert("tên sinh viên không được để trống");
@@ -233,22 +266,25 @@ function click_save_add_employee(){
 
     // 2 build object
     let employee={
-      "EmployeeCode":employeeCode,
-      "FullName":employeeName,
-      "DateOfBirth":dateOfBrith,
-      "PersonalTaxCode":soCMND,
-      "PositionName":eployeePosition,
-      "DepartmentName":donVi
+      "employeeCode":employeeCode,
+      "employeeName":employeeName,
+      "dateOfbrith":dateOfBrith,
+      "identityCode":identityCode,
+      "position":eployeePosition,
+      "email":employeeEmail,
+    //  "gender":gender
+      //"DepartmentName":donVi
     }
 
     // 3 gọi api thực hiện thêm mới
      // hiển thị loading 
+    
      $(".m-loading").show();
      if(forMode=="add")
      {
       $.ajax({
         type: "POST",
-        url: "https://localhost:7007/api/v1/Employees",
+        url: "https://localhost:7159/api/v1/Employees",
         data: JSON.stringify(employee),
         dataType: "json",
         contentType:"application/json",
@@ -267,7 +303,7 @@ function click_save_add_employee(){
      else{
       $.ajax({
         type: "PUT",
-        url: `https://localhost:7007/api/v1/Employees/${employeeId}`,
+        url: `https://localhost:7159/api/v1/Employees/${empId}`,
         data: JSON.stringify(employee),
         dataType: "json",
         contentType:"application/json",
@@ -309,8 +345,32 @@ function click_input_checkbox(){
 // 9 click vào nút xóa hiển thị thông báo xác nhận xóa nhân viên 
 //created by BVHoang(14/01/02024)
 function showDialogConfirmDelete(){
-  // show dialog confirm-del
-  $("#hideoption").click(function(){
+ $(document).on("click","#dialog_confirm_del",function(){
+   
+    // lấy dữ liệu ở dòng lên form 
+      // let employee= $(this).data("entity");
+      // empId=employee.employeeId;
+      // $("#txtEmployeeCode").val(employee.employeeCode);
+      // $("#txtEmployeeName").val(employee.employeeName);
+     // $("#dtDateOfBrith").val(employee.DateOfBirth);
+      // hiển thị form 
+      //$("#dialogadd").show();
+      //console.log(empId);
+  //  $("#dialog_confirm_del").click(function(){
+  //     // lấy dữ liệu là khóa chính ở dòng 
+  //     let employee= $(this).data("entity");
+  //     empdel=employee.employeeId;
+  //     console.log(del);
+  //     $("#show-dialog-confirm-del").show();
+      
+ })
+  //})
+  //show dialog confirm-del
+  $("#dialog_confirm_del").click(function(){
+      // lấy dữ liệu là khóa chính ở dòng 
+      // let employee= $(this).data("entity");
+      // employeeId=employee.EmployeeId;
+      // console.log(empId);
       $("#show-dialog-confirm-del").show();
   })
 
@@ -336,10 +396,14 @@ function status_loading()
 // created by BVHoang(28/01/2024)
 function delete_employee(){
   $("#m-dialog-confirm-del-yes").click(function(){
+      // lấy dữ liệu là khóa chính ở dòng 
+      // let employee= $(this).data("entity");
+      // employeeId=employee.employeeId;
+      // console.log(empId);
     $.ajax({
       type: "DELETE",
-      url: `https://cukcuk.manhnv.net/api/v1/Employees/${employeeId}`,
-      data: JSON.stringify(employee),
+      url: `https://cukcuk.manhnv.net/api/v1/Employees/${empdel}`,
+      data: JSON.stringify(rowData),
       dataType: "json",
       contentType:"application/json",
       success: function (response) {

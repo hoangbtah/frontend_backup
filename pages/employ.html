@@ -271,14 +271,14 @@
                            <div class="m-row-1-right">
                             <div class="m-dialog-employee-dob">
                                 <div><label for="">Ngày sinh</label></div>
-                                <div><input class="m-input"  type="date" id="txtDateofBrith"></div>
+                                <div><input class="m-input"  type="date" id="txtDateOfBrith"></div>
                             </div>
                             <div class="m-dialog-employee-gender">
                                 <div><label for="">Giới tính</label></div>
                                 <div style="display: flex; height: 40px;justify-content: center;align-items: center;">
-                                    <input class=""  type="radio" value="1" id="txtNam" name="gender"><label for="">Nam</label> 
-                                    <input class=""  type="radio" value="0" id="txtNu" name="gender"><label for="">Nữ</label>
-                                    <input class=""  type="radio" value="2" id="txtKhac" name="gender"><label for="">Khác</label>
+                                    <input class="" type="radio" value="1" id="txtMale" name="gender"><label for="">Nam</label> 
+                                    <input class="" type="radio" value="0" id="txtFemale" name="gender"><label for="">Nữ</label>
+                                    <input class="" type="radio" value="2" id="txtOther" name="gender"><label for="">Khác</label>
                                 </div>
                             </div>
                            </div>
@@ -286,18 +286,18 @@
                         <div class="m-row-2">
                             <div class="m-dialog-donvi">
                                 <div><label for="">Đơn vị <i class="required">*</i></label></div>
-                                <div><select  name="donVi" id="cboDonVi">
+                                <div><select  name="donVi" id="cboUnit">
                                     <option value="nhanSu">Phòng nhân sự</option>
                                     <option value="keToan">Phòng kế toán</option>
                                 </select></div>
                             </div>
                             <div class="m-dialog-cmnd">
                                 <div><label for="">Số CMND</label></div>
-                                <div><input class="m-input"  type="text" id="txtsoCMND"></div>
+                                <div><input class="m-input"  type="text" id="txtIdentityCode"></div>
                             </div>
                             <div class="m-dialog-ngay-cap">
                                 <div><label for="">Ngày cấp</label></div>
-                                <div><input class="m-input"  type="date" name="" id="txtngayCap"></div>
+                                <div><input class="m-input"  type="date" name="" id="txtidentityDate"></div>
                             </div>
                         </div>
                         <div class="m-row-3">
@@ -307,7 +307,7 @@
                             </div>
                             <div class="m-dialog-noi-cap">
                                 <div><label for="">Nơi cấp</label></div>
-                                <div><input class="m-input"  type="text" id="txtNoiCap"></div>
+                                <div><input class="m-input"  type="text" id="txtIdentityPlace"></div>
                             </div>
                         </div>
                         <div class="m-row-4">
@@ -341,7 +341,7 @@
                             </div>
                             <div class="m-dialog-chi-nhanh">
                                 <div><label for="">Chi nhánh</label></div>
-                                <div><input class="m-input"  type="text" id="txtChiNhanh"></div>
+                                <div><input class="m-input"  type="text" id="txtBranch"></div>
                             </div>
                         </div>
                     </div>
@@ -365,7 +365,7 @@
     <!-- Danh sách các chức năng tùy chỉnh nhân viên -->
     <div id="optionlist" class="m-btn-options-list">
         <div class="m-option-item"><label for="">Nhân bản</label></div>
-        <div id="hideoption" class="m-option-item"><label for="">Xóa</label></div>
+        <div id="dialog_confirm_del" class="m-option-item"><label for="">Xóa</label></div>
         <div class="m-option-item"><label for="">Ngưng sử dụng</label></div>
     </div>
     <!-- form xác nhận xóa -->
@@ -387,7 +387,6 @@
     </div>
     <!-- thư viên js -->
     <script src="/js/jquery-3.7.1.min.js"></script>
-    <script src="/js/resources.js"></script>
    
     <!-- js dùng chung -->
     <script src="/js/pagejs/main.js"></script>
