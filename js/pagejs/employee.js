@@ -3,9 +3,10 @@ $(document).ready(function() {
     //1 gọi api lấy dữ liệu 
     // loading dữ liệu
     loadData();
-    var forMode="edit";
+    var forMode=misaEnum.forMode.Edit;
     var empId=null;
     var empdel=null;
+    var departmentId=null;
     // thực hiên gán các sự kiện
     // nhấn vào nút thêm mới nhân viên
    add_employee();
@@ -35,6 +36,8 @@ $(document).ready(function() {
     delete_employee();
     //show toast
     show_toast();
+    // nạp lại dữ liệu
+    reload_data();
 })
 //0 validate dữ liệu không cho để trống dữ liệu yêu cầu
 //created by BVHoang(13/01/02024)
@@ -44,11 +47,11 @@ function validateInputRequired(input){
       if(value== null||value===""){
         
         $(input).addClass("m-input-error");
-        $(input).attr("title","Thông tin này không được để trống");
+        $(input).attr("title","thông tin này không được để trống");
       }
       else{
         $(input).removeClass("m-input-error");
-      
+        $(input).removeAttr("Title");
       }
 }
 // 1 loading dữ liệu
@@ -63,15 +66,6 @@ function loadData(){
    url:  "https://localhost:7159/api/v1/Employees",
     success: function (response) {
       for(const employee of response){
-       // let employeeId=employee.EmployeeId;
-        // let employeeCode= employee.EmployeeCode;
-        // let employName= employee.FullName;
-        // let employGender= employee.GenderName;
-        // let employeedob= employee.DateOfBirth;
-        // let employeeCMND= employee.PersonalTaxCode;
-        // let employeePosition= employee.PositionName;
-        // let employeeDepartment= employee.DepartmentName;
-      //  let employeeId= employee.employeeId;
         let employeeCode= employee.employeeCode;
         let employName= employee.employeeName;
         let employGender= employee.genderName;
@@ -151,28 +145,6 @@ function add_employee(){
   })
 }
 // 4 show chức năng tùy chỉnh nhân viên 
-//created by BVHoang(14/01/02024)
-// function show_options_employee(){
-//   $(document).on('click', '.m-show', function() {
-//     //lấy ra vị trí của nút vừa ấn 
-//     var buttonPosition = $(this).offset();
-//     // css để hiển thị so với nút vừa ấn
-//     $('.m-btn-options-list').css({
-//       'position': 'absolute',
-//       'top': buttonPosition.top + 'px',
-//       'left': (buttonPosition.left-100) + 'px',
-//     });
-//     $("#optionlist").show();
-//     // lấy dữ liệu là khóa chính ở dòng 
-//     let employee= $(this).data("entity");
-//     employeeId=employee.employeeId;
-//     console.log(empId);
-//   })
-//   // ấn vào dòng bên cạnh để ẩn đi chức năng tùy chỉnh
-//   $(".m-table").on("click","tr",function(){
-//     $("#optionlist").hide();
-//   })
-// }
 function show_options_employee(){
   $(".m-table").on("click", ".m-show", function() {
     // Xử lý khi nút được nhấn
@@ -205,14 +177,15 @@ function click_cancle_for_add_employee(){
 //created by BVHoang(14/01/02024)
 function double_click_row(){
   $(".m-table").on("dblclick","tr",function(){
-    forMode="edit";
+    forMode=misaEnum.forMode.Edit;
     // lấy dữ liệu ở dòng lên form 
        let employee= $(this).data("entity");
        console.log(employee);
        empId=employee.employeeId;
+       departmentId=employee.departmentId;
       $("#txtEmployeeCode").val(employee.employeeCode);
       $("#txtEmployeeName").val(employee.employeeName);
-     // $("#dtDateOfBrith").val(employee.DateOfBirth);
+      $("#txtDateOfBrith").val(employee.DateOfBirth);
       // hiển thị form 
       $("#dialogadd").show();
       console.log(empId);
@@ -231,15 +204,15 @@ function click_save_add_employee(){
     let employeeCode= $("#txtEmployeeCode").val();
     let employeeName= $("#txtEmployeeName").val();
     let dateOfBrith= $("#txtDateOfBrith").val();
-    // Xử lý sự kiện khi có thay đổi trạng thái của radio button
-//     $('input[type="radio"]').change(function() {
-//       // Lấy giá trị của radio button được chọn
-//       let gender = $('input[name="gender"]:checked').val();
+   // Xử lý sự kiện khi có thay đổi trạng thái của radio button
+    $('input[type="radio"]').change(function() {
+      // Lấy giá trị của radio button được chọn
+      let gender = $('input[name="gender"]:checked').val();
       
-//       // In giá trị ra console để kiểm tra
-//       console.log(gender);
-//  });
-    //let gender= $("#txtEmployeeCode").val();
+      // In giá trị ra console để kiểm tra
+      console.log(gender);
+    });
+   // let gender= $("#txtEmployeeCode").val();
     let unit=$("#cboUnit").val();
     let identityCode=$("#txtIdentityCode").val();
     let identityDate=$("#txtidentityDate").val();
@@ -254,33 +227,35 @@ function click_save_add_employee(){
     let branch=$("#txtBranch").val();
     // let salary= $("#txtSalary").val();
     if(employeeCode== null||employeeCode===""){
-      // alert("tên sinh viên không được để trống");
+       alert(resource.VI.employeeCodeNotEmpty);
     }
     if(dateOfBrith){
       dateOfBrith=new Date(dateOfBrith);
     }
     if(dateOfBrith> new Date())
     {
-      alert("Ngày sinh không được lớn hơn ngày hiện tại");
+      alert(resource.VI.errorDateOfBrith);
     }
 
     // 2 build object
     let employee={
       "employeeCode":employeeCode,
       "employeeName":employeeName,
-      "dateOfbrith":dateOfBrith,
+     "dateOfbrith":dateOfBrith,
       "identityCode":identityCode,
+      "gender":1,
       "position":eployeePosition,
       "email":employeeEmail,
+      "departmentId": departmentId
     //  "gender":gender
       //"DepartmentName":donVi
     }
-
+    console.log(employee);
     // 3 gọi api thực hiện thêm mới
      // hiển thị loading 
     
      $(".m-loading").show();
-     if(forMode=="add")
+     if(forMode==misaEnum.forMode.Add)
      {
       $.ajax({
         type: "POST",
@@ -338,39 +313,16 @@ function validate_required(){
 //created by BVHoang(14/01/02024)
 function click_input_checkbox(){
   $(document).on('change', '.m-table-select', function() {
-    // Find the closest 'tr' (table row) and toggle the 'selected-row' class
+    // click vào ô checkbox của 1 dòng thì css cho dòng đó
     $(this).closest('tr').toggleClass('m-table-selected', this.checked);
   });
 }
 // 9 click vào nút xóa hiển thị thông báo xác nhận xóa nhân viên 
 //created by BVHoang(14/01/02024)
 function showDialogConfirmDelete(){
- $(document).on("click","#dialog_confirm_del",function(){
-   
-    // lấy dữ liệu ở dòng lên form 
-      // let employee= $(this).data("entity");
-      // empId=employee.employeeId;
-      // $("#txtEmployeeCode").val(employee.employeeCode);
-      // $("#txtEmployeeName").val(employee.employeeName);
-     // $("#dtDateOfBrith").val(employee.DateOfBirth);
-      // hiển thị form 
-      //$("#dialogadd").show();
-      //console.log(empId);
-  //  $("#dialog_confirm_del").click(function(){
-  //     // lấy dữ liệu là khóa chính ở dòng 
-  //     let employee= $(this).data("entity");
-  //     empdel=employee.employeeId;
-  //     console.log(del);
-  //     $("#show-dialog-confirm-del").show();
-      
- })
-  //})
+
   //show dialog confirm-del
   $("#dialog_confirm_del").click(function(){
-      // lấy dữ liệu là khóa chính ở dòng 
-      // let employee= $(this).data("entity");
-      // employeeId=employee.EmployeeId;
-      // console.log(empId);
       $("#show-dialog-confirm-del").show();
   })
 
@@ -381,10 +333,11 @@ function hide_dialog_confirm_del(){
   // hide dialog confirm-del
   $("#m-dialog-confirm-del-no").click(function(){
       $("#show-dialog-confirm-del").hide();
+      $("#optionlist").hide();
   })
-  $(".m-table").on("dblclick","tr",function(){
+  // $(".m-table").on("dblclick","tr",function(){
    
-  })
+  // })
 }
 // 11 trang thái loading dữ liệu
 //created by BVHoang(28/01/02024)
@@ -402,10 +355,10 @@ function delete_employee(){
       // console.log(empId);
     $.ajax({
       type: "DELETE",
-      url: `https://cukcuk.manhnv.net/api/v1/Employees/${empdel}`,
-      data: JSON.stringify(rowData),
-      dataType: "json",
-      contentType:"application/json",
+      url: `https://localhost:7159/api/v1/Employees/${empdel}`,
+      // data: JSON.stringify(rowData),
+      // dataType: "json",
+      // contentType:"application/json",
       success: function (response) {
          // sau khi thực hiên xóa xong thì loading lại dữ liệu
         //$(".m-loading").hide();
@@ -430,6 +383,13 @@ function show_toast(){
           $(".m-toast-box").hide();
       }, 3000);
 
+}
+// 14 ấn vào nút reload bên trái ô tìm kiếm để load lại dữ liệu
+// created by BVHoang(29/01/2024)
+function reload_data(){
+  $("#reload").click(function(){
+    loadData();
+})
 }
 
 
