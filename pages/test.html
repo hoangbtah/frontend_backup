@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Table Data to Date Input with Click</title>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+<body>
+
+<table id="dataTable">
+  <thead>
+    <tr>
+      <th>STT</th>
+      <th>Ngày</th>
+      <!-- Các cột khác nếu có -->
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>2024-01-29</td>
+      <!-- Dữ liệu cho các cột khác nếu có -->
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>1999-01-03T00:00:00</td>
+      <!-- Dữ liệu cho các cột khác nếu có -->
+    </tr>
+    <!-- Các dòng khác nếu có -->
+  </tbody>
+</table>
+
+<input type="date" id="dateInput">
+
+<script>
+$(document).ready(function() {
+  // Lấy giá trị ngày từ hàng đầu tiên của bảng và đặt nó vào ô nhập ngày
+  var firstRowDate = $('#dataTable tbody tr:first td:nth-child(2)').text();
+  $('#dateInput').val(firstRowDate);
+
+  // Bắt sự kiện click vào dòng và cập nhật giá trị ngày trong ô nhập
+  $('#dataTable tbody tr').click(function() {
+    var selectedDate = $(this).find('td:nth-child(2)').text();
+    $('#dateInput').val(selectedDate);
+  });
+});
+</script>
+
+</body>
+</html>

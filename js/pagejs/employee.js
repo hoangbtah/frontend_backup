@@ -62,17 +62,34 @@ function loadData(){
   // 2 thực hiện binding dữ liệu lên UI
   $.ajax({
     type: "GET",      
-   // url:  "https://cukcuk.manhnv.net/api/v1/Employees",
-   url:  "https://localhost:7159/api/v1/Employees",
+   url:  "https://localhost:7159/api/v1/Employees/employees",
     success: function (response) {
       for(const employee of response){
-        let employeeCode= employee.employeeCode;
-        let employName= employee.employeeName;
-        let employGender= employee.genderName;
-        let employeedob= employee.dateOfbrith;
-        let employeeCMND= employee.identityCode;
-        let employeePosition= employee.position;
-        let employeeDepartment= employee.departmentId;
+        let employeeCode= employee.EmployeeCode;
+        let employeeName= employee.EmployeeName;
+        let employeeGender= employee.Gender;
+        let employeedob= employee.DateOfBrith ?? "";
+        let employeeIdentityCode= employee.IdentityCode ?? "";
+        let employeePosition= employee.Position ?? "";
+        let DepartmentId= employee.DepartmentId;
+        let DepartmentName= employee.DepartmentName;
+        let employeeBankAcount= employee.BankAccount ?? "";
+        let employeeBankName= employee.BankName ?? "";
+        let employeeBranch=employee.Branch ?? "";
+        // ?? "" kiểm tra giá trị có null hay ko nếu null trả về ""
+      
+        //định dạng giới tính 
+        if(employeeGender==1)
+        {
+          employeeGender=resource.VI.Male;
+        }
+        else if(employeeGender==0)
+        {
+          employeeGender=resource.VI.Female;
+        }
+        else{
+          employeeGender=resource.VI.Other;
+        }
        // định dạng ngày tháng hiển thị ra là ngày tháng năm
         if(employeedob)
         {
@@ -93,15 +110,15 @@ function loadData(){
         var el=$(`<tr>
         <td class="m-content-center" ><input type="checkbox" class="m-table-select"></td>
          <td class="m-content-left">${employeeCode}</td>
-         <td class="m-content-left">${employName}</td>
-         <td class="m-content-left">${employGender}</td>
+         <td class="m-content-left">${employeeName}</td>
+         <td class="m-content-left">${employeeGender}</td>
          <td class="m-content-center">${employeedob}</td>
-         <td class="m-content-left" >${employeeCMND}</td>
+         <td class="m-content-left" >${employeeIdentityCode}</td>
          <td class="m-content-left">${employeePosition}</td>
-         <td>${employeeDepartment}</td>
-         <td></td>
-         <td></td>
-         <td></td>
+         <td>${DepartmentName}</td>
+         <td>${employeeBankAcount}</td>
+         <td>${employeeBankName}</td>
+         <td>${employeeBranch}</td>
          <td class="m-content-center">
          <div class="m-show-options m-content-center">
                 <div class="m-btn-show">
@@ -151,7 +168,7 @@ function show_options_employee(){
     // Lấy dữ liệu của cả dòng chứa nút
     let rowData = $(this).closest("tr").data("entity");
     console.log(rowData);
-    empdel =rowData.employeeId;
+    empdel =rowData.EmployeeId;
     console.log(empdel);
      //lấy ra vị trí của nút vừa ấn 
     var buttonPosition = $(this).offset();
@@ -181,14 +198,15 @@ function double_click_row(){
     // lấy dữ liệu ở dòng lên form 
        let employee= $(this).data("entity");
        console.log(employee);
-       empId=employee.employeeId;
-       departmentId=employee.departmentId;
-      $("#txtEmployeeCode").val(employee.employeeCode);
-      $("#txtEmployeeName").val(employee.employeeName);
-      $("#txtDateOfBrith").val(employee.DateOfBirth);
+       empId=employee.EmployeeId;
+       departmentId=employee.DepartmentId;
+      $("#txtEmployeeCode").val(employee.EmployeeCode);
+      $("#txtEmployeeName").val(employee.EmployeeName);
+      let dob=employee.DateOfBrith;
+      $("#txtDateOfBrith").val( dob.substring(0,10));
       // hiển thị form 
       $("#dialogadd").show();
-      console.log(empId);
+      console.log(employee.DateOfBrith);
   })
 }
 // khi ấn nút cất và thêm của form thêm mới thì validate dữ liệu 
@@ -236,17 +254,18 @@ function click_save_add_employee(){
     {
       alert(resource.VI.errorDateOfBrith);
     }
-
+    // form sẽ được làm trống sau khi ấn thêm
+  //  $("#dialogadd input").val("");
     // 2 build object
     let employee={
-      "employeeCode":employeeCode,
-      "employeeName":employeeName,
-     "dateOfbrith":dateOfBrith,
-      "identityCode":identityCode,
-      "gender":1,
-      "position":eployeePosition,
-      "email":employeeEmail,
-      "departmentId": departmentId
+      "EmployeeCode":employeeCode,
+      "EmployeeName":employeeName,
+      "DateOfBrith":dateOfBrith,
+      "IdentityCode":identityCode,
+      "Gender":1,
+      "Position":eployeePosition,
+      "Email":employeeEmail,
+      "DepartmentId": departmentId
     //  "gender":gender
       //"DepartmentName":donVi
     }
@@ -349,10 +368,6 @@ function status_loading()
 // created by BVHoang(28/01/2024)
 function delete_employee(){
   $("#m-dialog-confirm-del-yes").click(function(){
-      // lấy dữ liệu là khóa chính ở dòng 
-      // let employee= $(this).data("entity");
-      // employeeId=employee.employeeId;
-      // console.log(empId);
     $.ajax({
       type: "DELETE",
       url: `https://localhost:7159/api/v1/Employees/${empdel}`,

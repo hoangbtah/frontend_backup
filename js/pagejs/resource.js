@@ -6,6 +6,10 @@ var resource={
         employeeCodeDuplicate:"Mã nhân viên này đã bị trùng vui lòng kiểm tra lại",
         errorDateOfBrith:"Ngày sinh không được lơn hơn ngày hiện tại",
         inforNotEmpty:"Thông tin này không được để trống",
+        Male:"Nam",
+        Female:"Nữ",
+        Other:"Chưa xác đinh",
+        
     }
 }
 var misaEnum={
