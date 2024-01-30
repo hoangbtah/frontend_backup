@@ -3,42 +3,60 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lấy giá trị ô radio</title>
-  <script>
-    function getSelectedGender() {
-      var genderRadios = document.getElementsByName('gender');
-
-      for (var i = 0; i < genderRadios.length; i++) {
-        if (genderRadios[i].checked) {
-          // Ô radio này được chọn, trả về giá trị của nó
-          return genderRadios[i].value;
-        }
-      }
-
-      // Nếu không có ô radio nào được chọn, trả về giá trị mặc định hoặc null
-      return null;
-    }
-
-    function showSelectedGender() {
-      var selectedGender = getSelectedGender();
-
-      if (selectedGender !== null) {
-        alert("Giá trị ô radio được chọn là: " + selectedGender);
-      } else {
-        alert("Vui lòng chọn một giới tính!");
-      }
-    }
-  </script>
+  <title>Chỉnh sửa nhân viên</title>
+  <!-- Import thư viện jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 <body>
 
-  <div style="display: flex; height: 40px; justify-content: center; align-items: center;">
-    <input class="" type="radio" value="1" id="txtMale" name="gender"><label for="txtMale">Nam</label>
-    <input class="" type="radio" value="0" id="txtFemale" name="gender"><label for="txtFemale">Nữ</label>
-    <input class="" type="radio" value="2" id="txtOther" name="gender"><label for="txtOther">Khác</label>
-  </div>
+  <form id="employeeForm">
+    <!-- Các trường thông tin khác -->
+    
+    <label for="department">Phòng ban:</label>
+    <select id="department" name="department"></select>
 
-  <button onclick="showSelectedGender()">Hiển thị giá trị ô radio được chọn</button>
+    <button type="button" onclick="submitForm()">Gửi thông tin</button>
+  </form>
+
+  <script>
+    // Gọi ajax để lấy dữ liệu từ API sử dụng jQuery
+    $.ajax({
+        url: 'https://localhost:7159/api/v1/Employees/employees',
+        type: 'GET',
+        success: function(response) {
+            // Chuyển đổi dữ liệu JSON thành đối tượng JavaScript
+            var departmentData = response;
+
+            // Hàm để hiển thị thông tin phòng ban trong combobox
+            function displayDepartments() {
+                var departmentSelect = $('#department');
+                var uniqueDepartmentNames = []; // Mảng tạm để lưu trữ các giá trị không trùng lặp
+
+                // Điền combobox từ danh sách đối tượng phòng ban
+                $.each(departmentData, function(index, department) {
+                    // Kiểm tra xem giá trị đã tồn tại trong mảng chưa
+                    if (uniqueDepartmentNames.indexOf(department.DepartmentName) === -1) {
+                        uniqueDepartmentNames.push(department.DepartmentName); 
+                        // Nếu chưa tồn tại, thêm vào mảng
+                        departmentSelect.append('<option value="' + department.DepartmentId + '">' + department.DepartmentName + '</option>');
+                    }
+                });
+            }
+
+            // Gọi hàm để hiển thị thông tin phòng ban khi trang được tải
+            displayDepartments();
+        }
+    });
+
+    function submitForm() {
+        // Lấy giá trị phòng ban đã chọn từ combobox
+        var selectedDepartment = $('#department').val();
+
+        // Gửi thông tin đến server hoặc xử lý dữ liệu theo nhu cầu của bạn
+        console.log('Phòng ban đã chọn:', selectedDepartment);
+    }
+</script>
+
 
 </body>
 </html>

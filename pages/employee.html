@@ -276,9 +276,9 @@
                             <div class="m-dialog-employee-gender">
                                 <div><label for="">Giới tính</label></div>
                                 <div style="display: flex; height: 40px;justify-content: center;align-items: center;">
-                                    <input class="" type="radio" value="1" id="txtMale" name="gender"><label for="">Nam</label> 
-                                    <input class="" type="radio" value="0" id="txtFemale" name="gender"><label for="">Nữ</label>
-                                    <input class="" type="radio" value="2" id="txtOther" name="gender"><label for="">Khác</label>
+                                    <input class="gender" type="radio" value="1" id="txtMale" name="gender"><label for="">Nam</label> 
+                                    <input class="gender" type="radio" value="0" id="txtFemale" name="gender"><label for="">Nữ</label>
+                                    <input class="gender" type="radio" value="2" id="txtOther" name="gender"><label for="">Khác</label>
                                 </div>
                             </div>
                            </div>
@@ -286,7 +286,8 @@
                         <div class="m-row-2">
                             <div class="m-dialog-donvi">
                                 <div><label for="">Đơn vị <i class="required">*</i></label></div>
-                                <div><select  name="donVi" id="cboUnit">
+                                <div>
+                                    <!-- <select  name="donVi" id="cboUnit">
                                     <option value="PB02">Phòng nhân sự</option>
                                     <option value="PB03">Phòng kế toán</option>
                                     <option value="PB08">Phòng bảo vệ</option>
@@ -295,7 +296,9 @@
                                     <option value="Pb07">Phòng lễ tân</option>
                                     <option value="PB04">Phòng đào tạo</option>
                                     <option value="PB01">Phòng hành chính</option>
-                                </select></div>
+                                </select> -->
+                                <select id="department" name="department"></select>
+                            </div>
                             </div>
                             <div class="m-dialog-cmnd">
                                 <div><label for="">Số CMND</label></div>
@@ -397,6 +400,88 @@
     <!-- js dùng chung -->
     <script src="/js/pagejs/main.js"></script>
     <script src="/js/pagejs/employee.js"></script>
+    <!-- <script>
+        // Gọi httpget để lấy dữ liệu từ API
+        httpget('https://localhost:7159/api/v1/Departments', function(response) {
+          // Chuyển đổi dữ liệu JSON thành đối tượng JavaScript
+          var departmentData = JSON.parse(response);
+    
+          // Hàm để hiển thị thông tin phòng ban trong combobox
+          function displayDepartments() {
+            var departmentSelect = document.getElementById('department');
+    
+            // Điền combobox từ danh sách đối tượng phòng ban
+            departmentData.forEach(function(department) {
+              var option = document.createElement('option');
+              option.value = department.departmentId;
+              option.text = department.departmentName;
+              departmentSelect.add(option);
+            });
+          }
+    
+          // Gọi hàm để hiển thị thông tin phòng ban khi trang được tải
+          displayDepartments();
+        });
+    
+        function submitForm() {
+          // Lấy giá trị phòng ban đã chọn từ combobox
+          var selectedDepartment = document.getElementById('department').value;
+    
+          // Gửi thông tin đến server hoặc xử lý dữ liệu theo nhu cầu của bạn
+          console.log('Phòng ban đã chọn:', selectedDepartment);
+        }
+    
+        // Hàm httpget đơn giản để gọi API
+        function httpget(url, callback) {
+          var xhr = new XMLHttpRequest();
+          xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+              callback(xhr.responseText);
+            }
+          };
+          xhr.open("GET", url, true);
+          xhr.send();
+        }
+      </script> -->
+      <!-- <script>
+        // Gọi ajax để lấy dữ liệu từ API sử dụng jQuery
+        $.ajax({
+            url: 'https://localhost:7159/api/v1/Employees/employees',
+            type: 'GET',
+            success: function(response) {
+                // Chuyển đổi dữ liệu JSON thành đối tượng JavaScript
+                var departmentData = response;
+    
+                // Hàm để hiển thị thông tin phòng ban trong combobox
+                function displayDepartments() {
+                    var departmentSelect = $('#department');
+                    var uniqueDepartmentNames = []; // Mảng tạm để lưu trữ các giá trị không trùng lặp
+    
+                    // Điền combobox từ danh sách đối tượng phòng ban
+                    $.each(departmentData, function(index, department) {
+                        // Kiểm tra xem giá trị đã tồn tại trong mảng chưa
+                        if (uniqueDepartmentNames.indexOf(department.DepartmentName) === -1) {
+                            uniqueDepartmentNames.push(department.DepartmentName); 
+                            // Nếu chưa tồn tại, thêm vào mảng
+                            departmentSelect.append('<option value="' + department.DepartmentId + '">' + department.DepartmentName + '</option>');
+                        }
+                    });
+                }
+    
+                // Gọi hàm để hiển thị thông tin phòng ban khi trang được tải
+                displayDepartments();
+            }
+        });
+    
+        function submitForm() {
+            // Lấy giá trị phòng ban đã chọn từ combobox
+            var selectedDepartment = $('#department').val();
+    
+            // Gửi thông tin đến server hoặc xử lý dữ liệu theo nhu cầu của bạn
+            console.log('Phòng ban đã chọn:', selectedDepartment);
+        }
+    </script> -->
+    
     <!-- js dùng riêng cho trang-->
 </body>
 </html>

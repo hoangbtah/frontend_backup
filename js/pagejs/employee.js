@@ -38,6 +38,8 @@ $(document).ready(function() {
     show_toast();
     // nạp lại dữ liệu
     reload_data();
+    // phòng ban
+ //   displayDepartments();
   
 })
 //0 validate dữ liệu không cho để trống dữ liệu yêu cầu
@@ -65,6 +67,26 @@ function loadData(){
     type: "GET",      
    url:  "https://localhost:7159/api/v1/Employees/employees",
     success: function (response) {
+      var departmentData = response;
+      // Hàm để hiển thị thông tin phòng ban trong combobox
+      function displayDepartments() {
+          var departmentSelect = $('#department');
+          var uniqueDepartmentNames = []; // Mảng tạm để lưu trữ các giá trị không trùng lặp
+
+          // Điền combobox từ danh sách đối tượng phòng ban
+          $.each(departmentData, function(index, department) {
+              // Kiểm tra xem giá trị đã tồn tại trong mảng chưa
+              if (uniqueDepartmentNames.indexOf(department.DepartmentName) === -1) {
+                  uniqueDepartmentNames.push(department.DepartmentName); 
+                  // Nếu chưa tồn tại, thêm vào mảng
+                  departmentSelect.append('<option value="' + department.DepartmentId + '">' + department.DepartmentName + '</option>');
+              }
+          });
+      }
+
+    ////  Gọi hàm để hiển thị thông tin phòng ban khi trang được tải
+     displayDepartments();
+   
       for(const employee of response){
         let employeeCode= employee.EmployeeCode;
         let employeeName= employee.EmployeeName;
@@ -129,9 +151,7 @@ function loadData(){
                 </div> 
                
          </div>
-        
-         
-         </td>
+        </td>
      </tr>`);
      el.data("entity",employee);
      $("table#tblEmployee tbody").append(el);
@@ -155,7 +175,7 @@ function close_form_add(){
 //created by BVHoang(14/01/02024)
 function add_employee(){
   $("#btn-add").click(function(){
-    forMode="add";
+    forMode=misaEnum.forMode.Add;
     // 3 hiển thị form thêm mới 
     $("#dialogadd").show();
     // focus vào ô nhập liệu đầu tiên
@@ -262,20 +282,21 @@ function click_save_add_employee(){
     let employeeBankAcount=$("#txtAccountBank").val();
     let employeeBankName=$("#txtBankName").val();
     let branch=$("#txtBranch").val();
-    let employeeDender;
-  
-    // if(document.getElementById('txtFemale').checked = true)
-    // {
-    //   employeeDender=$("#txtFemale").val();
-    // }
-    // else if(document.getElementById('Male').checked = true)
-    // {
-    //   employeeDender=$("#txtMale").val()
-    // }
-    // else{
-    //   employeeDender=$("#txtOther").val()
-    // }
+    //lấy id của phòng ban được chọn trong combobox
+    let selectedDepartment = $('#department').val();
+    // lấy giá trj của gender
+     let genderRadios = document.getElementsByName('gender');
+      var selectedGender ;
 
+      for (var i = 0; i < genderRadios.length; i++) {
+        if (genderRadios[i].checked) {
+          selectedGender = genderRadios[i].value;
+         // console.log(selectedGender);
+          break;
+        }
+      }
+      // chuyển giới tính về dạng số 
+      var genderNumber = parseInt(selectedGender, 10);
     /// kiểm tra không để trống dữ liệu
     if(employeeCode== null||employeeCode===""){
        alert(resource.VI.employeeCodeNotEmpty);
@@ -295,12 +316,10 @@ function click_save_add_employee(){
       "EmployeeName":employeeName,
       "DateOfBrith":dateOfBrith,
       "IdentityCode":identityCode,
-      "Gender":employeeDender,
+      "Gender":genderNumber,
       "Position":eployeePosition,
       "Email":employeeEmail,
-      "DepartmentId": departmentId
-    //  "gender":gender
-      //"DepartmentName":donVi
+      "DepartmentId": selectedDepartment
     }
     console.log(employee);
     // 3 gọi api thực hiện thêm mới
@@ -439,5 +458,19 @@ function reload_data(){
     loadData();
 })
 }
+  // Hàm để hiển thị thông tin phòng ban trong combobox
+//   function displayDepartments() {
+//     var departmentSelect = $('#department');
+//     var uniqueDepartmentNames = []; // Mảng tạm để lưu trữ các giá trị không trùng lặp
 
+//     // Điền combobox từ danh sách đối tượng phòng ban
+//     $.each(departmentData, function(index, department) {
+//         // Kiểm tra xem giá trị đã tồn tại trong mảng chưa
+//         if (uniqueDepartmentNames.indexOf(department.DepartmentName) === -1) {
+//             uniqueDepartmentNames.push(department.DepartmentName); 
+//             // Nếu chưa tồn tại, thêm vào mảng
+//             departmentSelect.append('<option value="' + department.DepartmentId + '">' + department.DepartmentName + '</option>');
+//         }
+//     });
+// }
 
