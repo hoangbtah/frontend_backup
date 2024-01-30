@@ -3,49 +3,42 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Table Data to Date Input with Click</title>
-  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <title>Lấy giá trị ô radio</title>
+  <script>
+    function getSelectedGender() {
+      var genderRadios = document.getElementsByName('gender');
+
+      for (var i = 0; i < genderRadios.length; i++) {
+        if (genderRadios[i].checked) {
+          // Ô radio này được chọn, trả về giá trị của nó
+          return genderRadios[i].value;
+        }
+      }
+
+      // Nếu không có ô radio nào được chọn, trả về giá trị mặc định hoặc null
+      return null;
+    }
+
+    function showSelectedGender() {
+      var selectedGender = getSelectedGender();
+
+      if (selectedGender !== null) {
+        alert("Giá trị ô radio được chọn là: " + selectedGender);
+      } else {
+        alert("Vui lòng chọn một giới tính!");
+      }
+    }
+  </script>
 </head>
 <body>
 
-<table id="dataTable">
-  <thead>
-    <tr>
-      <th>STT</th>
-      <th>Ngày</th>
-      <!-- Các cột khác nếu có -->
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>1</td>
-      <td>2024-01-29</td>
-      <!-- Dữ liệu cho các cột khác nếu có -->
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>1999-01-03T00:00:00</td>
-      <!-- Dữ liệu cho các cột khác nếu có -->
-    </tr>
-    <!-- Các dòng khác nếu có -->
-  </tbody>
-</table>
+  <div style="display: flex; height: 40px; justify-content: center; align-items: center;">
+    <input class="" type="radio" value="1" id="txtMale" name="gender"><label for="txtMale">Nam</label>
+    <input class="" type="radio" value="0" id="txtFemale" name="gender"><label for="txtFemale">Nữ</label>
+    <input class="" type="radio" value="2" id="txtOther" name="gender"><label for="txtOther">Khác</label>
+  </div>
 
-<input type="date" id="dateInput">
-
-<script>
-$(document).ready(function() {
-  // Lấy giá trị ngày từ hàng đầu tiên của bảng và đặt nó vào ô nhập ngày
-  var firstRowDate = $('#dataTable tbody tr:first td:nth-child(2)').text();
-  $('#dateInput').val(firstRowDate);
-
-  // Bắt sự kiện click vào dòng và cập nhật giá trị ngày trong ô nhập
-  $('#dataTable tbody tr').click(function() {
-    var selectedDate = $(this).find('td:nth-child(2)').text();
-    $('#dateInput').val(selectedDate);
-  });
-});
-</script>
+  <button onclick="showSelectedGender()">Hiển thị giá trị ô radio được chọn</button>
 
 </body>
 </html>

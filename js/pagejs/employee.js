@@ -38,6 +38,7 @@ $(document).ready(function() {
     show_toast();
     // nạp lại dữ liệu
     reload_data();
+  
 })
 //0 validate dữ liệu không cho để trống dữ liệu yêu cầu
 //created by BVHoang(13/01/02024)
@@ -202,11 +203,29 @@ function double_click_row(){
        departmentId=employee.DepartmentId;
       $("#txtEmployeeCode").val(employee.EmployeeCode);
       $("#txtEmployeeName").val(employee.EmployeeName);
+      // lấy dữ liệu ngày sinh lên form
+      let gender= employee.Gender;
       let dob=employee.DateOfBrith;
-      $("#txtDateOfBrith").val( dob.substring(0,10));
+      if(dob==null)
+      {
+        dob="";
+      }
+      else{
+        $("#txtDateOfBrith").val( dob.substring(0,10));
+      }
+     
+    // lấy dữ liệu giới tính lên form 
+    if (gender === 1) {
+      document.getElementById('txtMale').checked = true;
+    } else if (gender===0) {
+      document.getElementById('txtFemale').checked = true;
+    }
+    else{
+      document.getElementById('txtOther').checked = true;
+    }
       // hiển thị form 
       $("#dialogadd").show();
-      console.log(employee.DateOfBrith);
+     
   })
 }
 // khi ấn nút cất và thêm của form thêm mới thì validate dữ liệu 
@@ -225,7 +244,7 @@ function click_save_add_employee(){
    // Xử lý sự kiện khi có thay đổi trạng thái của radio button
     $('input[type="radio"]').change(function() {
       // Lấy giá trị của radio button được chọn
-      let gender = $('input[name="gender"]:checked').val();
+      // let gender = $('input[name="gender"]:checked').val();
       
       // In giá trị ra console để kiểm tra
       console.log(gender);
@@ -243,7 +262,21 @@ function click_save_add_employee(){
     let employeeBankAcount=$("#txtAccountBank").val();
     let employeeBankName=$("#txtBankName").val();
     let branch=$("#txtBranch").val();
-    // let salary= $("#txtSalary").val();
+    let employeeDender;
+  
+    // if(document.getElementById('txtFemale').checked = true)
+    // {
+    //   employeeDender=$("#txtFemale").val();
+    // }
+    // else if(document.getElementById('Male').checked = true)
+    // {
+    //   employeeDender=$("#txtMale").val()
+    // }
+    // else{
+    //   employeeDender=$("#txtOther").val()
+    // }
+
+    /// kiểm tra không để trống dữ liệu
     if(employeeCode== null||employeeCode===""){
        alert(resource.VI.employeeCodeNotEmpty);
     }
@@ -262,7 +295,7 @@ function click_save_add_employee(){
       "EmployeeName":employeeName,
       "DateOfBrith":dateOfBrith,
       "IdentityCode":identityCode,
-      "Gender":1,
+      "Gender":employeeDender,
       "Position":eployeePosition,
       "Email":employeeEmail,
       "DepartmentId": departmentId
