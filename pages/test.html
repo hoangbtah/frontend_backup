@@ -1,62 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chỉnh sửa nhân viên</title>
-  <!-- Import thư viện jQuery -->
-  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Employee</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 <body>
 
-  <form id="employeeForm">
-    <!-- Các trường thông tin khác -->
-    
-    <label for="department">Phòng ban:</label>
-    <select id="department" name="department"></select>
+    <input type="text" id="employeeSearchInput" placeholder="Nhập tên nhân viên...">
+    <button id="searchButton">Tìm kiếm</button>
 
-    <button type="button" onclick="submitForm()">Gửi thông tin</button>
-  </form>
+    <script>
+        $(document).ready(function() {
+            // Lắng nghe sự kiện khi người dùng nhấn phím
+            $("#employeeSearchInput").on('keypress', function(e) {
+                // Kiểm tra nếu phím được nhấn là phím Enter (keyCode 13)
+                if (e.which === 13) {
+                    // Gọi hàm tìm kiếm ở đây
+                    performSearch();
+                }
+            });
 
-  <script>
-    // Gọi ajax để lấy dữ liệu từ API sử dụng jQuery
-    $.ajax({
-        url: 'https://localhost:7159/api/v1/Employees/employees',
-        type: 'GET',
-        success: function(response) {
-            // Chuyển đổi dữ liệu JSON thành đối tượng JavaScript
-            var departmentData = response;
+            // Lắng nghe sự kiện khi người dùng nhấn nút tìm kiếm
+            $("#searchButton").on('click', function() {
+                // Gọi hàm tìm kiếm ở đây
+                performSearch();
+            });
 
-            // Hàm để hiển thị thông tin phòng ban trong combobox
-            function displayDepartments() {
-                var departmentSelect = $('#department');
-                var uniqueDepartmentNames = []; // Mảng tạm để lưu trữ các giá trị không trùng lặp
-
-                // Điền combobox từ danh sách đối tượng phòng ban
-                $.each(departmentData, function(index, department) {
-                    // Kiểm tra xem giá trị đã tồn tại trong mảng chưa
-                    if (uniqueDepartmentNames.indexOf(department.DepartmentName) === -1) {
-                        uniqueDepartmentNames.push(department.DepartmentName); 
-                        // Nếu chưa tồn tại, thêm vào mảng
-                        departmentSelect.append('<option value="' + department.DepartmentId + '">' + department.DepartmentName + '</option>');
-                    }
-                });
+            // Hàm thực hiện tìm kiếm
+            function performSearch() {
+                var searchString = $("#employeeSearchInput").val();
+                
+                // Thực hiện các hành động tìm kiếm ở đây
+                // Ví dụ: Gọi API để lấy dữ liệu với searchString
+                console.log("Đang tìm kiếm: " + searchString);
             }
-
-            // Gọi hàm để hiển thị thông tin phòng ban khi trang được tải
-            displayDepartments();
-        }
-    });
-
-    function submitForm() {
-        // Lấy giá trị phòng ban đã chọn từ combobox
-        var selectedDepartment = $('#department').val();
-
-        // Gửi thông tin đến server hoặc xử lý dữ liệu theo nhu cầu của bạn
-        console.log('Phòng ban đã chọn:', selectedDepartment);
-    }
-</script>
-
+        });
+    </script>
 
 </body>
 </html>

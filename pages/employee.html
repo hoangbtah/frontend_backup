@@ -181,7 +181,7 @@
             </div>
             <div class="m-page-toolbar">
                 <div class="m-toolbar-left">
-                    <input class="m-input m-btn-icon-right m-icon-search" placeholder="Tìm theo mã,tên nhân viên" style="width: 200px;"/>
+                    <input id="txtSearch" class="m-input m-btn-icon-right m-icon-search" placeholder="Tìm theo mã,tên nhân viên" style="width: 200px;"/>
                 </div>
                 <div class="m-toolbar-right">
                     <button id="reload" class="m-icon-refresh"></button>
@@ -287,16 +287,7 @@
                             <div class="m-dialog-donvi">
                                 <div><label for="">Đơn vị <i class="required">*</i></label></div>
                                 <div>
-                                    <!-- <select  name="donVi" id="cboUnit">
-                                    <option value="PB02">Phòng nhân sự</option>
-                                    <option value="PB03">Phòng kế toán</option>
-                                    <option value="PB08">Phòng bảo vệ</option>
-                                    <option value="PB05">Phòng chăm sóc khách hàng</option>
-                                    <option value="Pb06">Phòng an ninh</option>
-                                    <option value="Pb07">Phòng lễ tân</option>
-                                    <option value="PB04">Phòng đào tạo</option>
-                                    <option value="PB01">Phòng hành chính</option>
-                                </select> -->
+                                   
                                 <select id="department" name="department"></select>
                             </div>
                             </div>
@@ -306,7 +297,7 @@
                             </div>
                             <div class="m-dialog-ngay-cap">
                                 <div><label for="">Ngày cấp</label></div>
-                                <div><input class="m-input"  type="date" name="" id="txtidentityDate"></div>
+                                <div><input class="m-input"  type="date" name="" id="txtIdentityDate"></div>
                             </div>
                         </div>
                         <div class="m-row-3">
@@ -400,88 +391,6 @@
     <!-- js dùng chung -->
     <script src="/js/pagejs/main.js"></script>
     <script src="/js/pagejs/employee.js"></script>
-    <!-- <script>
-        // Gọi httpget để lấy dữ liệu từ API
-        httpget('https://localhost:7159/api/v1/Departments', function(response) {
-          // Chuyển đổi dữ liệu JSON thành đối tượng JavaScript
-          var departmentData = JSON.parse(response);
-    
-          // Hàm để hiển thị thông tin phòng ban trong combobox
-          function displayDepartments() {
-            var departmentSelect = document.getElementById('department');
-    
-            // Điền combobox từ danh sách đối tượng phòng ban
-            departmentData.forEach(function(department) {
-              var option = document.createElement('option');
-              option.value = department.departmentId;
-              option.text = department.departmentName;
-              departmentSelect.add(option);
-            });
-          }
-    
-          // Gọi hàm để hiển thị thông tin phòng ban khi trang được tải
-          displayDepartments();
-        });
-    
-        function submitForm() {
-          // Lấy giá trị phòng ban đã chọn từ combobox
-          var selectedDepartment = document.getElementById('department').value;
-    
-          // Gửi thông tin đến server hoặc xử lý dữ liệu theo nhu cầu của bạn
-          console.log('Phòng ban đã chọn:', selectedDepartment);
-        }
-    
-        // Hàm httpget đơn giản để gọi API
-        function httpget(url, callback) {
-          var xhr = new XMLHttpRequest();
-          xhr.onreadystatechange = function() {
-            if (xhr.readyState == 4 && xhr.status == 200) {
-              callback(xhr.responseText);
-            }
-          };
-          xhr.open("GET", url, true);
-          xhr.send();
-        }
-      </script> -->
-      <!-- <script>
-        // Gọi ajax để lấy dữ liệu từ API sử dụng jQuery
-        $.ajax({
-            url: 'https://localhost:7159/api/v1/Employees/employees',
-            type: 'GET',
-            success: function(response) {
-                // Chuyển đổi dữ liệu JSON thành đối tượng JavaScript
-                var departmentData = response;
-    
-                // Hàm để hiển thị thông tin phòng ban trong combobox
-                function displayDepartments() {
-                    var departmentSelect = $('#department');
-                    var uniqueDepartmentNames = []; // Mảng tạm để lưu trữ các giá trị không trùng lặp
-    
-                    // Điền combobox từ danh sách đối tượng phòng ban
-                    $.each(departmentData, function(index, department) {
-                        // Kiểm tra xem giá trị đã tồn tại trong mảng chưa
-                        if (uniqueDepartmentNames.indexOf(department.DepartmentName) === -1) {
-                            uniqueDepartmentNames.push(department.DepartmentName); 
-                            // Nếu chưa tồn tại, thêm vào mảng
-                            departmentSelect.append('<option value="' + department.DepartmentId + '">' + department.DepartmentName + '</option>');
-                        }
-                    });
-                }
-    
-                // Gọi hàm để hiển thị thông tin phòng ban khi trang được tải
-                displayDepartments();
-            }
-        });
-    
-        function submitForm() {
-            // Lấy giá trị phòng ban đã chọn từ combobox
-            var selectedDepartment = $('#department').val();
-    
-            // Gửi thông tin đến server hoặc xử lý dữ liệu theo nhu cầu của bạn
-            console.log('Phòng ban đã chọn:', selectedDepartment);
-        }
-    </script> -->
-    
     <!-- js dùng riêng cho trang-->
 </body>
 </html>

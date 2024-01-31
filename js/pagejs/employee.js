@@ -40,6 +40,10 @@ $(document).ready(function() {
     reload_data();
     // phòng ban
  //   displayDepartments();
+    // Tìm kiếm nhân viên theo mã , tên hoặc số điện thoại
+    employeeSearch();
+    // loading dữ liệu lên bảng
+    loadDataTable();
   
 })
 //0 validate dữ liệu không cho để trống dữ liệu yêu cầu
@@ -99,6 +103,7 @@ function loadData(){
         let employeeBankAcount= employee.BankAccount ?? "";
         let employeeBankName= employee.BankName ?? "";
         let employeeBranch=employee.Branch ?? "";
+        
         // ?? "" kiểm tra giá trị có null hay ko nếu null trả về ""
       
         //định dạng giới tính 
@@ -223,6 +228,20 @@ function double_click_row(){
        departmentId=employee.DepartmentId;
       $("#txtEmployeeCode").val(employee.EmployeeCode);
       $("#txtEmployeeName").val(employee.EmployeeName);
+      $("#txtEmployeeName").val(employee.EmployeeName);
+      $("#txtEmployeeName").val(employee.EmployeeName);
+      $("#txtEmployeeName").val(employee.EmployeeName);
+      $("#txtEmployeeName").val(employee.EmployeeName);
+      $("#txtEmployeeName").val(employee.EmployeeName);
+      $("#txtEmployeeName").val(employee.EmployeeName);
+      $("#txtEmployeeName").val(employee.EmployeeName);
+      $("#txtEmployeeName").val(employee.EmployeeName);
+      $("#txtEmployeeName").val(employee.EmployeeName);
+      $("#txtEmployeeName").val(employee.EmployeeName);
+      $("#txtEmployeeName").val(employee.EmployeeName);
+      $("#txtEmployeeName").val(employee.EmployeeName);
+      $("#txtEmployeeName").val(employee.EmployeeName);
+      $("#txtEmployeeName").val(employee.EmployeeName);
       // lấy dữ liệu ngày sinh lên form
       let gender= employee.Gender;
       let dob=employee.DateOfBrith;
@@ -270,9 +289,9 @@ function click_save_add_employee(){
       console.log(gender);
     });
    // let gender= $("#txtEmployeeCode").val();
-    let unit=$("#cboUnit").val();
+    //let unit=$("#cboUnit").val();
     let identityCode=$("#txtIdentityCode").val();
-    let identityDate=$("#txtidentityDate").val();
+    let identityDate=$("#txtIdentityDate").val();
     let eployeePosition=$("#txtPosition").val();
     let identityPlace=$("#txtIdentityPlace").val();
     let employeeAddress=$("#txtAddress").val();
@@ -319,7 +338,15 @@ function click_save_add_employee(){
       "Gender":genderNumber,
       "Position":eployeePosition,
       "Email":employeeEmail,
-      "DepartmentId": selectedDepartment
+      "DepartmentId": selectedDepartment,
+      "IdentityDate":identityDate,
+      "Address":employeeAddress,
+      "LandlinePhone":employeePhone,
+      "BankAccount":employeeBankAcount,
+      "BankName":employeeBankName,
+      "Branch":branch,
+      "PhoneNumber":employeePhoneNumber,
+      "IdentityPlace":identityPlace
     }
     console.log(employee);
     // 3 gọi api thực hiện thêm mới
@@ -473,4 +500,179 @@ function reload_data(){
 //         }
 //     });
 // }
+
+/// 15 Tìm kiếm nhân viên theo mã tên hoặc số điện thoại
+// created by BVhoang(31/01/2024)
+function employeeSearch(){
+  // Lắng nghe sự kiện khi người dùng nhấn phím
+  $("#txtSearch").on('keypress', function(e) {
+    
+    // Kiểm tra nếu phím được nhấn là phím Enter (keyCode 13)
+    if (e.which === 13) {
+        // Gọi hàm tìm kiếm ở đây
+        let searchString= $("#txtSearch").val();
+        $("table#tblEmployee tbody").empty();
+       // performSearch();
+       $.ajax({
+        type: "GET",
+        url: `https://localhost:7159/api/v1/Employees/employee/${searchString}`,
+        success: function (response) {
+           // hiển thị dữ liệu tìm kiếm
+           console.log(response);
+           for(const employee of response)
+           {
+             let employeeCode= employee.EmployeeCode;
+         let employeeName= employee.EmployeeName;
+         let employeeGender= employee.Gender;
+         let employeedob= employee.DateOfBrith ?? "";
+         let employeeIdentityCode= employee.IdentityCode ?? "";
+         let employeePosition= employee.Position ?? "";
+         let DepartmentId= employee.DepartmentId;
+         let DepartmentName= employee.DepartmentName;
+         let employeeBankAcount= employee.BankAccount ?? "";
+         let employeeBankName= employee.BankName ?? "";
+         let employeeBranch=employee.Branch ?? "";
+             // ?? "" kiểm tra giá trị có null hay ko nếu null trả về ""
+           
+             //định dạng giới tính 
+             if(employeeGender==1)
+             {
+               employeeGender=resource.VI.Male;
+             }
+             else if(employeeGender==0)
+             {
+               employeeGender=resource.VI.Female;
+             }
+             else{
+               employeeGender=resource.VI.Other;
+             }
+            // định dạng ngày tháng hiển thị ra là ngày tháng năm
+             if(employeedob)
+             {
+               employeedob= new Date(employeedob);
+               let date= employeedob.getDate();
+               date =date<10 ?  `0${date}`:date;
+               // lấy ngày 
+               let month= employeedob.getMonth()+1;
+               // lấy tháng
+               month= month <10 ? `0${month}`:month;
+               let year = employeedob.getFullYear();
+               //lấy giá trị là ngày tháng năm
+               employeedob= `${date}/${month}/${year}`;
+             }
+             else{
+               employeedob="";
+             }
+             var el=$(`<tr>
+             <td class="m-content-center" ><input type="checkbox" class="m-table-select"></td>
+              <td class="m-content-left">${employeeCode}</td>
+              <td class="m-content-left">${employeeName}</td>
+              <td class="m-content-left">${employeeGender}</td>
+              <td class="m-content-center">${employeedob}</td>
+              <td class="m-content-left" >${employeeIdentityCode}</td>
+              <td class="m-content-left">${employeePosition}</td>
+              <td>${DepartmentName}</td>
+              <td>${employeeBankAcount}</td>
+              <td>${employeeBankName}</td>
+              <td>${employeeBranch}</td>
+              <td class="m-content-center">
+              <div class="m-show-options m-content-center">
+                     <div class="m-btn-show">
+                        <div><label for="">Sửa</label></div>
+                         <div><button id="m-show" class="m-show m-icon-show-options">
+                        </button></div>
+                     </div> 
+                    
+              </div>
+             </td>
+          </tr>`);
+         el.data("entity",employee);
+         $("table#tblEmployee tbody").append(el);
+         // $(".m-loading").hide();
+           }
+          //loadDataTable();
+        },
+        error:function (response) {
+            // alert(response.responseJSON.userMsg);
+          //  $(".m-loading").hide();
+          }
+      });
+    }
+});
+}
+// 15 Load dữ liệu lên bảng 
+// created by BVHoang(31/01/2024)
+function loadDataTable(response){
+  for(const employee of response)
+  {
+    let employeeCode= employee.EmployeeCode;
+let employeeName= employee.EmployeeName;
+let employeeGender= employee.Gender;
+let employeedob= employee.DateOfBrith ?? "";
+let employeeIdentityCode= employee.IdentityCode ?? "";
+let employeePosition= employee.Position ?? "";
+let DepartmentId= employee.DepartmentId;
+let DepartmentName= employee.DepartmentName;
+let employeeBankAcount= employee.BankAccount ?? "";
+let employeeBankName= employee.BankName ?? "";
+let employeeBranch=employee.Branch ?? "";
+    // ?? "" kiểm tra giá trị có null hay ko nếu null trả về ""
+  
+    //định dạng giới tính 
+    if(employeeGender==1)
+    {
+      employeeGender=resource.VI.Male;
+    }
+    else if(employeeGender==0)
+    {
+      employeeGender=resource.VI.Female;
+    }
+    else{
+      employeeGender=resource.VI.Other;
+    }
+   // định dạng ngày tháng hiển thị ra là ngày tháng năm
+    if(employeedob)
+    {
+      employeedob= new Date(employeedob);
+      let date= employeedob.getDate();
+      date =date<10 ?  `0${date}`:date;
+      // lấy ngày 
+      let month= employeedob.getMonth()+1;
+      // lấy tháng
+      month= month <10 ? `0${month}`:month;
+      let year = employeedob.getFullYear();
+      //lấy giá trị là ngày tháng năm
+      employeedob= `${date}/${month}/${year}`;
+    }
+    else{
+      employeedob="";
+    }
+    var el=$(`<tr>
+    <td class="m-content-center" ><input type="checkbox" class="m-table-select"></td>
+     <td class="m-content-left">${employeeCode}</td>
+     <td class="m-content-left">${employeeName}</td>
+     <td class="m-content-left">${employeeGender}</td>
+     <td class="m-content-center">${employeedob}</td>
+     <td class="m-content-left" >${employeeIdentityCode}</td>
+     <td class="m-content-left">${employeePosition}</td>
+     <td>${DepartmentName}</td>
+     <td>${employeeBankAcount}</td>
+     <td>${employeeBankName}</td>
+     <td>${employeeBranch}</td>
+     <td class="m-content-center">
+     <div class="m-show-options m-content-center">
+            <div class="m-btn-show">
+               <div><label for="">Sửa</label></div>
+                <div><button id="m-show" class="m-show m-icon-show-options">
+               </button></div>
+            </div> 
+           
+     </div>
+    </td>
+ </tr>`);
+el.data("entity",employee);
+$("table#tblEmployee tbody").append(el);
+// $(".m-loading").hide();
+  }
+}
 
