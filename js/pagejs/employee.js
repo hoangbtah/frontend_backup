@@ -7,6 +7,7 @@ $(document).ready(function() {
     var empId=null;
     var empdel=null;
     var departmentId=null;
+    var empCode=null;
     // thực hiên gán các sự kiện
     // nhấn vào nút thêm mới nhân viên
    add_employee();
@@ -136,7 +137,7 @@ function loadData(){
           employeedob= `${date}/${month}/${year}`;
         }
         else{
-          employeedob="";
+          employeedob = "";
         }
         var el=$(`<tr>
         <td class="m-content-center" ><input type="checkbox" class="m-table-select"></td>
@@ -198,6 +199,8 @@ function show_options_employee(){
     let rowData = $(this).closest("tr").data("entity");
     console.log(rowData);
     empdel =rowData.EmployeeId;
+    empCode=rowData.EmployeeCode;
+    console.log(empCode);
     console.log(empdel);
      //lấy ra vị trí của nút vừa ấn 
     var buttonPosition = $(this).offset();
@@ -278,8 +281,9 @@ function click_save_add_employee(){
     // email phải đúng định dạng
     // tiền lương phải là số
     let employeeCode= $("#txtEmployeeCode").val();
+    empCode=employeeCode;
     let employeeName= $("#txtEmployeeName").val();
-    let dateOfBrith= $("#txtDateOfBrith").val();
+    let dateOfBrith= $("#txtDateOfBrith").val() ?? null;
    // Xử lý sự kiện khi có thay đổi trạng thái của radio button
     $('input[type="radio"]').change(function() {
       // Lấy giá trị của radio button được chọn
@@ -308,19 +312,29 @@ function click_save_add_employee(){
           break;
         }
       }
+      //chuyển ngày xác thực về null nếu không chọn giá trị gì
+      if(identityDate=="")
+      {
+        identityDate=null;
+      }
       // chuyển giới tính về dạng số 
       var genderNumber = parseInt(selectedGender, 10);
     /// kiểm tra không để trống dữ liệu
     if(employeeCode== null||employeeCode===""){
        alert(resource.VI.employeeCodeNotEmpty);
     }
+    // kiểm tra ngày sinh
     if(dateOfBrith){
       dateOfBrith=new Date(dateOfBrith);
+      if(dateOfBrith> new Date())
+      {
+        alert(resource.VI.errorDateOfBrith);
+      }
     }
-    if(dateOfBrith> new Date())
-    {
-      alert(resource.VI.errorDateOfBrith);
+    else {
+      dateOfBrith=null;
     }
+
     // form sẽ được làm trống sau khi ấn thêm
   //  $("#dialogadd input").val("");
     // 2 build object
@@ -424,7 +438,7 @@ function showDialogConfirmDelete(){
 
   //show dialog confirm-del
   $("#dialog_confirm_del").click(function(){
-    $("#confirmDeleteLabel").text(resource.VI.confrimDelete);
+    $("#confirmDeleteLabel").text(resource.VI.confrimDelete.replace("${employeeCode}",empCode));
       $("#show-dialog-confirm-del").show();
   })
 
@@ -475,12 +489,10 @@ function delete_employee(){
  //13 show toast thông báo 
 //created by BVHoang(28/01/02024)
 function show_toast(){
- 
       $(".m-toast-box").show();
       setTimeout(function(){
           $(".m-toast-box").hide();
       }, 3000);
-
 }
 // 14 ấn vào nút reload bên trái ô tìm kiếm để load lại dữ liệu
 // created by BVHoang(29/01/2024)
@@ -604,7 +616,7 @@ function employeeSearch(){
     }
 });
 }
-// 15 Load dữ liệu lên bảng 
+// 15 Load dữ liệu lên bảng cho phần tìm kiếm
 // created by BVHoang(31/01/2024)
 function loadDataTable(response){
   for(const employee of response)
@@ -696,13 +708,13 @@ function checkDuplicateEmployeeCode(employeeCode, callback) {
 // created By BVhoang(01/02/2024)
 function showAndHideDialogExitsCode(){
   // show dialog exits-code
-  //console.log("lỗi ");
-  $("#employeeCodeExistsLabel").text(resource.VI.employeeCodeExists);
+  $("#employeeCodeExistsLabel").text(resource.VI.employeeCodeExists.replace("${employeeCode}",empCode));
    $("#show-dialog-exits-code").show();
 // hide dialog exits-code
 $("#m-btn-hide-dialog-exits-code").click(function(){
    $("#show-dialog-exits-code").hide();
 })
 }
+
 
 
