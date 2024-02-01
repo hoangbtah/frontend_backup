@@ -73,3 +73,6 @@
     z-index: 1;
     background-color:#fff;
 }
+.m-table .m-option{
+    min-width: 50px;
+}

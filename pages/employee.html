@@ -364,7 +364,7 @@
     </div>
     <!-- Danh sách các chức năng tùy chỉnh nhân viên -->
     <div id="optionlist" class="m-btn-options-list">
-        <div class="m-option-item"><label for="">Nhân bản</label></div>
+        <div class="m-option-item" id="replication" class="replication"><label for="">Nhân bản</label></div>
         <div id="dialog_confirm_del" class="m-option-item"><label for="">Xóa</label></div>
         <div class="m-option-item"><label for="">Ngưng sử dụng</label></div>
     </div>
@@ -395,9 +395,19 @@
             <div class="m-dialog-exits-code-btn"><button id="m-btn-hide-dialog-exits-code" class="m-btn">Đồng ý</button></div>
         </div>
     </div>
+    <!-- Thông tin nhân viên không được để trống -->
+    <div id="show-dialog-empty" class="m-dialog">
+        <div class="m-dialog-empty-content">
+            <div class="m-dialog-empty-header  m-btn-icon m-btn-icon-add">
+                <label for="" id="inforNotEmpty"></label>
+            </div>
+            <div class="m-dialog-empty-btn"><button id="m-btn-hide-dialog-empty" class="m-btn">Đóng</button></div>
+        </div>
+    </div>
     <!-- thư viên js -->
     <script src="/js/jquery-3.7.1.min.js"></script>
     <script src="/js/pagejs/resource.js"></script>
+
     <!-- js dùng chung -->
     <!-- <script src="/js/pagejs/main.js"></script> -->
     <script src="/js/pagejs/employee.js"></script>

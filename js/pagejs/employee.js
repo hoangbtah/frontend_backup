@@ -3,6 +3,7 @@ $(document).ready(function() {
     //1 gọi api lấy dữ liệu 
     // loading dữ liệu
     loadData();
+    // khai báo các biến cho việc sử dụng 
     var forMode=misaEnum.forMode.Edit;
     var empId=null;
     var empdel=null;
@@ -14,6 +15,7 @@ $(document).ready(function() {
     //4 ẩn form thêm mới bằng nút X
     close_form_add();
     // ấn buttom show để xem chức năng nút bên cạnh nút sửa 
+   // employee_relication();
     show_options_employee();
   //  ấn vào nút xóa để ẩn chức năng
   // ấn vào nút hủy của formm thêm mới nhân viên để ẩn form 
@@ -47,6 +49,10 @@ $(document).ready(function() {
     //loadDataTable();
     //hiển thị thông báo trùng mã 
     //showAndHideDialogExitsCode();
+    // chọn nút sửa lấy thông tin lên form;
+    get_infor_edit_employee();
+    // nhân bản nhân viên
+   employee_relication();
      
   
 })
@@ -139,6 +145,9 @@ function loadData(){
         else{
           employeedob = "";
         }
+       
+        
+
         var el=$(`<tr>
         <td class="m-content-center" ><input type="checkbox" class="m-table-select"></td>
          <td class="m-content-left">${employeeCode}</td>
@@ -154,7 +163,7 @@ function loadData(){
          <td class="m-content-center">
          <div class="m-show-options m-content-center">
                 <div class="m-btn-show">
-                   <div><label for="">Sửa</label></div>
+                   <div><label id="editemployee" class="edit-employee" for="">Sửa</label></div>
                     <div><button id="m-show" class="m-show m-icon-show-options">
                    </button></div>
                 </div> 
@@ -239,7 +248,7 @@ function double_click_row(){
       $("#txtAccountBank").val(employee.BankAccount);
       $("#txtBankName").val(employee.BankName);
       $("#txtBranch").val(employee.Branch);
-      $("#txtIdentityDate").val(employee.IdentityDate);
+     // $("#txtIdentityDate").val(employee.IdentityDate);
       $("#txtIdentityPlace").val(employee.IdentityPlace);
       $("#txtPhone").val(employee.LandLinePhone);
       $("#txtPhoneNumber").val(employee.PhoneNumber);
@@ -255,7 +264,15 @@ function double_click_row(){
       else{
         $("#txtDateOfBrith").val( dob.substring(0,10));
       }
-     
+     //lấy dữ liệu này cấp lên form
+     let idenDate= employee.IdentityDate;
+     if(idenDate==null)
+     {
+      idenDate="";
+     }
+     else{
+       $("#txtIdentityDate").val( idenDate.substring(0,10));
+     }
     // lấy dữ liệu giới tính lên form 
     if (gender === 1) {
       document.getElementById('txtMale').checked = true;
@@ -321,7 +338,14 @@ function click_save_add_employee(){
       var genderNumber = parseInt(selectedGender, 10);
     /// kiểm tra không để trống dữ liệu
     if(employeeCode== null||employeeCode===""){
-       alert(resource.VI.employeeCodeNotEmpty);
+     // alert("mã nhân viên không đươc để trống");
+     $("#show-dialog-exits-code").hide();
+     $("#inforNotEmpty").text(resource.VI.employeeCodeNotEmpty);
+       $("#show-dialog-empty").show();
+       $("#m-btn-hide-dialog-empty").click(function(){
+        $("#show-dialog-empty").hide();
+       })
+      
     }
     // kiểm tra ngày sinh
     if(dateOfBrith){
@@ -376,12 +400,13 @@ function click_save_add_employee(){
           loadData();
         },
         error:function (response) {
-          showAndHideDialogExitsCode();
-             //alert(response.responseJSON.userMsg);
-          //   if (response.status === 400) {
-          //     alert("Lỗi 400: " + response.responseJSON.userMsg);
+         // showAndHideDialogExitsCode();
+            if (response.status === 400) {
+              alert("Lỗi 400: " + response.responseJSON.userMsg);
+            // showAndHideDialogExitsCode();
+            }
           // } else if (response.status === 409) {
-          //     alert("Mã nhân viên đã tồn tại. Vui lòng chọn mã khác.");
+          //   showAndHideDialogExitsCode();
           // } else {
           //     alert("Lỗi không xác định: " + response.statusText);
           // }
@@ -501,21 +526,6 @@ function reload_data(){
     loadData();
 })
 }
-  // Hàm để hiển thị thông tin phòng ban trong combobox
-//   function displayDepartments() {
-//     var departmentSelect = $('#department');
-//     var uniqueDepartmentNames = []; // Mảng tạm để lưu trữ các giá trị không trùng lặp
-
-//     // Điền combobox từ danh sách đối tượng phòng ban
-//     $.each(departmentData, function(index, department) {
-//         // Kiểm tra xem giá trị đã tồn tại trong mảng chưa
-//         if (uniqueDepartmentNames.indexOf(department.DepartmentName) === -1) {
-//             uniqueDepartmentNames.push(department.DepartmentName); 
-//             // Nếu chưa tồn tại, thêm vào mảng
-//             departmentSelect.append('<option value="' + department.DepartmentId + '">' + department.DepartmentName + '</option>');
-//         }
-//     });
-// }
 
 /// 15 Tìm kiếm nhân viên theo mã tên hoặc số điện thoại
 // created by BVhoang(31/01/2024)
@@ -692,18 +702,18 @@ $("table#tblEmployee tbody").append(el);
   }
 }
 // kiểm tra mã trùng
-function checkDuplicateEmployeeCode(employeeCode, callback) {
-  $.ajax({
-      type: "GET",
-      url: `https://localhost:7159/api/v1/Employees/CheckDuplicate/${employeeCode}`,
-      success: function (response) {
-          callback(response); // Gọi hàm callback với kết quả kiểm tra
-      },
-      error: function (response) {
-          // Xử lý lỗi nếu cần
-      }
-  });
-}
+// function checkDuplicateEmployeeCode(employeeCode, callback) {
+//   $.ajax({
+//       type: "GET",
+//       url: `https://localhost:7159/api/v1/Employees/CheckDuplicate/${employeeCode}`,
+//       success: function (response) {
+//           callback(response); // Gọi hàm callback với kết quả kiểm tra
+//       },
+//       error: function (response) {
+//           // Xử lý lỗi nếu cần
+//       }
+//   });
+// }
 // hiện thị thông báo mã nhân viên đã tồn tại 
 // created By BVhoang(01/02/2024)
 function showAndHideDialogExitsCode(){
@@ -716,5 +726,123 @@ $("#m-btn-hide-dialog-exits-code").click(function(){
 })
 }
 
+/// lấy dữ liệu gửi lên form khi ấn sửa
+function get_infor_edit_employee(){
+  $(".m-table").on("click", ".edit-employee", function() {
+    // Xử lý khi nút được nhấn
+    // Lấy dữ liệu của cả dòng chứa nút
+    forMode=misaEnum.forMode.Edit;
+    // lấy dữ liệu ở dòng lên form 
+    let employee = $(this).closest("tr").data("entity");
+       console.log(employee);
+       empId=employee.EmployeeId;
+       departmentId=employee.DepartmentId;
+      $("#txtEmployeeCode").val(employee.EmployeeCode);
+      $("#txtEmployeeName").val(employee.EmployeeName);
+      $("#txtIdentityCode").val(employee.IdentityCode);
+      $("#txtPosition").val(employee.Position);
+      $("#txtAccountBank").val(employee.BankAccount);
+      $("#txtBankName").val(employee.BankName);
+      $("#txtBranch").val(employee.Branch);
+     // $("#txtIdentityDate").val(employee.IdentityDate);
+      $("#txtIdentityPlace").val(employee.IdentityPlace);
+      $("#txtPhone").val(employee.LandLinePhone);
+      $("#txtPhoneNumber").val(employee.PhoneNumber);
+      $("#txtEmail").val(employee.Email);
+      $("#txtAddress").val(employee.Address);
+      // lấy dữ liệu ngày sinh lên form
+      let gender= employee.Gender;
+      let dob=employee.DateOfBrith;
+      if(dob==null)
+      {
+        dob="";
+      }
+      else{
+        $("#txtDateOfBrith").val( dob.substring(0,10));
+      }
+     //lấy dữ liệu này cấp lên form
+     let idenDate= employee.IdentityDate;
+     if(idenDate==null)
+     {
+      idenDate="";
+     }
+     else{
+       $("#txtIdentityDate").val( idenDate.substring(0,10));
+     }
+    // lấy dữ liệu giới tính lên form 
+    if (gender === 1) {
+      document.getElementById('txtMale').checked = true;
+    } else if (gender===0) {
+      document.getElementById('txtFemale').checked = true;
+    }
+    else{
+      document.getElementById('txtOther').checked = true;
+    }
+      // hiển thị form 
+      $("#dialogadd").show();
+     
+});
+}
+/// nhân bản nhân viên
+function employee_relication(){
+  $(".m-table").on("click", ".m-show", function() {
+    // Xử lý khi nút được nhấn
+    // Lấy dữ liệu của cả dòng chứa nút
+    forMode=misaEnum.forMode.Edit;
+    // lấy dữ liệu ở dòng lên form 
+    let employee =$(this).closest("tr").data("entity");
+       console.log(employee);
+       empId=employee.EmployeeId;
+       departmentId=employee.DepartmentId;
+      $("#txtEmployeeCode").val(employee.EmployeeCode);
+      $("#txtEmployeeName").val(employee.EmployeeName);
+      $("#txtIdentityCode").val(employee.IdentityCode);
+      $("#txtPosition").val(employee.Position);
+      $("#txtAccountBank").val(employee.BankAccount);
+      $("#txtBankName").val(employee.BankName);
+      $("#txtBranch").val(employee.Branch);
+     // $("#txtIdentityDate").val(employee.IdentityDate);
+      $("#txtIdentityPlace").val(employee.IdentityPlace);
+      $("#txtPhone").val(employee.LandLinePhone);
+      $("#txtPhoneNumber").val(employee.PhoneNumber);
+      $("#txtEmail").val(employee.Email);
+      $("#txtAddress").val(employee.Address);
+      // lấy dữ liệu ngày sinh lên form
+      let gender= employee.Gender;
+      let dob=employee.DateOfBrith;
+      if(dob==null)
+      {
+        dob="";
+      }
+      else{
+        $("#txtDateOfBrith").val( dob.substring(0,10));
+      }
+     //lấy dữ liệu này cấp lên form
+     let idenDate= employee.IdentityDate;
+     if(idenDate==null)
+     {
+      idenDate="";
+     }
+     else{
+       $("#txtIdentityDate").val( idenDate.substring(0,10));
+     }
+    // lấy dữ liệu giới tính lên form 
+    if (gender === 1) {
+      document.getElementById('txtMale').checked = true;
+    } else if (gender===0) {
+      document.getElementById('txtFemale').checked = true;
+    }
+    else{
+      document.getElementById('txtOther').checked = true;
+    }
+   
+      // hiển thị form 
+      $("#replication").click(function(){
+        $("#dialogadd").show();
+        $("#optionlist").hide();
+     })
+     
+});
+}
 
 

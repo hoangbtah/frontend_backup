@@ -3,41 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Search Employee</title>
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <title>Table Event Handling</title>
+    <style>
+        /* Style your table and dialog here */
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+    </style>
 </head>
 <body>
 
-    <input type="text" id="employeeSearchInput" placeholder="Nhập tên nhân viên...">
-    <button id="searchButton">Tìm kiếm</button>
+<table id="myTable">
+    <thead>
+        <tr>
+            <th>Mã nhân viên</th>
+            <th>Tên nhân viên</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>An</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Hoa</td>
+        </tr>
+        <!-- Add more rows as needed -->
+    </tbody>
+</table>
 
-    <script>
-        $(document).ready(function() {
-            // Lắng nghe sự kiện khi người dùng nhấn phím
-            $("#employeeSearchInput").on('keypress', function(e) {
-                // Kiểm tra nếu phím được nhấn là phím Enter (keyCode 13)
-                if (e.which === 13) {
-                    // Gọi hàm tìm kiếm ở đây
-                    performSearch();
-                }
-            });
+<button onclick="addNewEmployee()">Thêm mới nhân viên</button>
 
-            // Lắng nghe sự kiện khi người dùng nhấn nút tìm kiếm
-            $("#searchButton").on('click', function() {
-                // Gọi hàm tìm kiếm ở đây
-                performSearch();
-            });
+<script>
+    function addNewEmployee() {
+        // Calculate the maximum employee code in the table
+        const table = document.getElementById('myTable');
+        let maxEmployeeCode = 0;
 
-            // Hàm thực hiện tìm kiếm
-            function performSearch() {
-                var searchString = $("#employeeSearchInput").val();
-                
-                // Thực hiện các hành động tìm kiếm ở đây
-                // Ví dụ: Gọi API để lấy dữ liệu với searchString
-                console.log("Đang tìm kiếm: " + searchString);
+        for (let i = 1; i < table.rows.length; i++) {
+            const currentCode = parseInt(table.rows[i].cells[0].innerText, 10);
+            if (!isNaN(currentCode) && currentCode > maxEmployeeCode) {
+                maxEmployeeCode = currentCode;
             }
-        });
-    </script>
+        }
+
+        // Set the next employee code in the input field
+        const newEmployeeCode = maxEmployeeCode + 1;
+        const employeeCodeInput = prompt('Nhập mã nhân viên mới:', newEmployeeCode);
+
+        if (employeeCodeInput !== null) {
+            // Create a new row and add it to the table
+            const newRow = table.insertRow(table.rows.length);
+            const cell1 = newRow.insertCell(0);
+            const cell2 = newRow.insertCell(1);
+
+            cell1.innerText = employeeCodeInput;
+            cell2.innerText = ''; // Leave the name field blank
+        }
+    }
+</script>
 
 </body>
 </html>

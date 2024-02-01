@@ -62,7 +62,7 @@
 }
 .m-show-options .m-btn-show{
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
 }
 .m-btn-show button{
     width: 16px;
@@ -70,6 +70,7 @@
     margin-left: 5px;
    border: none;
 }
+
 
 
 
