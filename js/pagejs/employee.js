@@ -43,7 +43,10 @@ $(document).ready(function() {
     // Tìm kiếm nhân viên theo mã , tên hoặc số điện thoại
     employeeSearch();
     // loading dữ liệu lên bảng
-    loadDataTable();
+    //loadDataTable();
+    //hiển thị thông báo trùng mã 
+    //showAndHideDialogExitsCode();
+     
   
 })
 //0 validate dữ liệu không cho để trống dữ liệu yêu cầu
@@ -54,11 +57,11 @@ function validateInputRequired(input){
       if(value== null||value===""){
         
         $(input).addClass("m-input-error");
-        $(input).attr("title","thông tin này không được để trống");
+        $(input).attr("title",resource.VI.inforNotEmpty);
       }
       else{
         $(input).removeClass("m-input-error");
-        $(input).removeAttr("Title");
+        $(input).removeAttr("Title",resource.VI.inforNotEmpty);
       }
 }
 // 1 loading dữ liệu
@@ -228,20 +231,17 @@ function double_click_row(){
        departmentId=employee.DepartmentId;
       $("#txtEmployeeCode").val(employee.EmployeeCode);
       $("#txtEmployeeName").val(employee.EmployeeName);
-      $("#txtEmployeeName").val(employee.EmployeeName);
-      $("#txtEmployeeName").val(employee.EmployeeName);
-      $("#txtEmployeeName").val(employee.EmployeeName);
-      $("#txtEmployeeName").val(employee.EmployeeName);
-      $("#txtEmployeeName").val(employee.EmployeeName);
-      $("#txtEmployeeName").val(employee.EmployeeName);
-      $("#txtEmployeeName").val(employee.EmployeeName);
-      $("#txtEmployeeName").val(employee.EmployeeName);
-      $("#txtEmployeeName").val(employee.EmployeeName);
-      $("#txtEmployeeName").val(employee.EmployeeName);
-      $("#txtEmployeeName").val(employee.EmployeeName);
-      $("#txtEmployeeName").val(employee.EmployeeName);
-      $("#txtEmployeeName").val(employee.EmployeeName);
-      $("#txtEmployeeName").val(employee.EmployeeName);
+      $("#txtIdentityCode").val(employee.IdentityCode);
+      $("#txtPosition").val(employee.Position);
+      $("#txtAccountBank").val(employee.BankAccount);
+      $("#txtBankName").val(employee.BankName);
+      $("#txtBranch").val(employee.Branch);
+      $("#txtIdentityDate").val(employee.IdentityDate);
+      $("#txtIdentityPlace").val(employee.IdentityPlace);
+      $("#txtPhone").val(employee.LandLinePhone);
+      $("#txtPhoneNumber").val(employee.PhoneNumber);
+      $("#txtEmail").val(employee.Email);
+      $("#txtAddress").val(employee.Address);
       // lấy dữ liệu ngày sinh lên form
       let gender= employee.Gender;
       let dob=employee.DateOfBrith;
@@ -283,13 +283,7 @@ function click_save_add_employee(){
    // Xử lý sự kiện khi có thay đổi trạng thái của radio button
     $('input[type="radio"]').change(function() {
       // Lấy giá trị của radio button được chọn
-      // let gender = $('input[name="gender"]:checked').val();
-      
-      // In giá trị ra console để kiểm tra
-      console.log(gender);
     });
-   // let gender= $("#txtEmployeeCode").val();
-    //let unit=$("#cboUnit").val();
     let identityCode=$("#txtIdentityCode").val();
     let identityDate=$("#txtIdentityDate").val();
     let eployeePosition=$("#txtPosition").val();
@@ -331,22 +325,22 @@ function click_save_add_employee(){
   //  $("#dialogadd input").val("");
     // 2 build object
     let employee={
-      "EmployeeCode":employeeCode,
-      "EmployeeName":employeeName,
-      "DateOfBrith":dateOfBrith,
-      "IdentityCode":identityCode,
-      "Gender":genderNumber,
-      "Position":eployeePosition,
-      "Email":employeeEmail,
-      "DepartmentId": selectedDepartment,
-      "IdentityDate":identityDate,
-      "Address":employeeAddress,
-      "LandlinePhone":employeePhone,
-      "BankAccount":employeeBankAcount,
-      "BankName":employeeBankName,
-      "Branch":branch,
-      "PhoneNumber":employeePhoneNumber,
-      "IdentityPlace":identityPlace
+      "employeeCode":employeeCode,
+      "employeeName":employeeName,
+      "dateOfbrith":dateOfBrith,
+      "gender":genderNumber,
+     "position":eployeePosition,
+      "email":employeeEmail,
+      "departmentId": selectedDepartment,
+      "identityCode":identityCode,
+      "identityDate":identityDate,
+      "address":employeeAddress,
+       "landlinePhone":employeePhone,
+      "bankAccount":employeeBankAcount,
+      "bankName":employeeBankName,
+      "branch":branch,
+      "phoneNumber":employeePhoneNumber,
+      "identityPlace":identityPlace
     }
     console.log(employee);
     // 3 gọi api thực hiện thêm mới
@@ -368,7 +362,15 @@ function click_save_add_employee(){
           loadData();
         },
         error:function (response) {
-            // alert(response.responseJSON.userMsg);
+          showAndHideDialogExitsCode();
+             //alert(response.responseJSON.userMsg);
+          //   if (response.status === 400) {
+          //     alert("Lỗi 400: " + response.responseJSON.userMsg);
+          // } else if (response.status === 409) {
+          //     alert("Mã nhân viên đã tồn tại. Vui lòng chọn mã khác.");
+          // } else {
+          //     alert("Lỗi không xác định: " + response.statusText);
+          // }
             $(".m-loading").hide();
           }
       });
@@ -387,6 +389,7 @@ function click_save_add_employee(){
           loadData();
         },
         error:function (response) {
+          showAndHideDialogExitsCode();
            // alert(response.responseJSON.userMsg);
             $(".m-loading").hide();
           }
@@ -421,6 +424,7 @@ function showDialogConfirmDelete(){
 
   //show dialog confirm-del
   $("#dialog_confirm_del").click(function(){
+    $("#confirmDeleteLabel").text(resource.VI.confrimDelete);
       $("#show-dialog-confirm-del").show();
   })
 
@@ -675,4 +679,30 @@ $("table#tblEmployee tbody").append(el);
 // $(".m-loading").hide();
   }
 }
+// kiểm tra mã trùng
+function checkDuplicateEmployeeCode(employeeCode, callback) {
+  $.ajax({
+      type: "GET",
+      url: `https://localhost:7159/api/v1/Employees/CheckDuplicate/${employeeCode}`,
+      success: function (response) {
+          callback(response); // Gọi hàm callback với kết quả kiểm tra
+      },
+      error: function (response) {
+          // Xử lý lỗi nếu cần
+      }
+  });
+}
+// hiện thị thông báo mã nhân viên đã tồn tại 
+// created By BVhoang(01/02/2024)
+function showAndHideDialogExitsCode(){
+  // show dialog exits-code
+  //console.log("lỗi ");
+  $("#employeeCodeExistsLabel").text(resource.VI.employeeCodeExists);
+   $("#show-dialog-exits-code").show();
+// hide dialog exits-code
+$("#m-btn-hide-dialog-exits-code").click(function(){
+   $("#show-dialog-exits-code").hide();
+})
+}
+
 

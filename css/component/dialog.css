@@ -108,6 +108,7 @@
     border-bottom: 1px solid #333;
     height:50px ;
     word-wrap: break-word;
+    display: flex;
     
 }
 .m-dialog .m-dialog-exits-code-content .m-dialog-exits-code-btn {

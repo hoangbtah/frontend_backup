@@ -2,7 +2,7 @@ $(document).ready(function(){
     show_toast();
    showAndHideDialogEmpty();
     showAndHideDialogExitsCode();
-    showAndHideDialogConfirmDelete();
+   showAndHideDialogConfirmDelete();
     $('.m-table-selected').change(function() {
         // Find the closest 'tr' (table row) and toggle the 'selected-row' class
         $(this).closest('tr').toggleClass('m-table-selected', this.checked);

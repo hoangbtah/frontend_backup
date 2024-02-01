@@ -9,6 +9,8 @@ var resource={
         Male:"Nam",
         Female:"Nữ",
         Other:"Chưa xác đinh",
+        employeeCodeExists:"Mã nhân viên đã tồn tại trong hệ thống",
+        confrimDelete:"Bạn có thực sự muốn xóa Nhân viên<> không ?",
         
     }
 }

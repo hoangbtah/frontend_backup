@@ -373,7 +373,7 @@
         <div class="m-dialog-confirm-del-content">
             <div class="m-dialog-confirm-del-header ">
                 <div class="m-icon-confirm-delete"></div>
-               <label for="">Bạn có thực sự muốn xóa không</label>
+               <label for="" id="confirmDeleteLabel"></label>
             </div>
             <div class="m-dialog-confirm-del-btn">
                 <div class="m-dialog-confirm-del-no">
@@ -385,11 +385,21 @@
             </div>
         </div>
     </div>
+    <!-- Hiển thị thông báo lỗi trùng mã -->
+    <div id="show-dialog-exits-code" class="m-dialog">
+        <div class="m-dialog-exits-code-content">
+            <div class="m-dialog-exits-code-header">
+                <div class="m-icon-confirm-delete"></div>
+               <label for="" id="employeeCodeExistsLabel"></label>
+            </div>
+            <div class="m-dialog-exits-code-btn"><button id="m-btn-hide-dialog-exits-code" class="m-btn">Đồng ý</button></div>
+        </div>
+    </div>
     <!-- thư viên js -->
     <script src="/js/jquery-3.7.1.min.js"></script>
     <script src="/js/pagejs/resource.js"></script>
     <!-- js dùng chung -->
-    <script src="/js/pagejs/main.js"></script>
+    <!-- <script src="/js/pagejs/main.js"></script> -->
     <script src="/js/pagejs/employee.js"></script>
     <!-- js dùng riêng cho trang-->
 </body>
