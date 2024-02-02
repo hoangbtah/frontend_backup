@@ -48,10 +48,6 @@
     background-color: blanchedalmond; */
 }
 
-.m-dialog .m-dialog-header button.m-dialog-close:hover{
-   /* background-color: #ccc; */
-
-}
 .m-dialog .m-dialog-footer{
     display: flex;
     /* padding: 24px; */

@@ -33,23 +33,22 @@
 .m-table .m-employee-code{
    min-width: 15px;
 }
-.m-table .m-hoten{
-    width: 200px;
+.m-table .m-employee-name{
+    min-width: 200px;
 }
-.m-table .m-gioitinh{
-    min-width: 30px;
+.m-table .m-gender{
+    min-width: 20px;
 }
-.m-table .m-ngaysinh{
-    min-width: 100px;
+.m-table .m-dateOfbrith{
+    min-width: 130px;
 }
-.m-table .m-cmnd{
+.m-table .m-identityCode{
     min-width: 100px;
 
 }
-.m-table .m-hoatdong{
-    width: 20px;
+.m-table .m-position{
+    min-width: 120px;
 }
-
 .m-table tr{
     height: 20px;
     border-bottom:1px solid #333 ;

@@ -6,25 +6,63 @@
 .m-icon-notice{
     background-position: center;
     flex-shrink: 0;
-
     background: url('/assets/img/Sprites.64af8f61.svg') no-repeat -844px -520px;
 	width: 18px;
 	height: 19px;
     
 }
-
+.m-logo-menu-company{
+    background: url('/assets/img/Sprites.64af8f61.svg') no-repeat -498px -1029px;
+	width: 16px;
+	height: 14px;
+    margin-right: 10px;
+    margin-left: 24px;
+}
+.sibar{
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    margin-right: 10px;
+    background-image: url(/assets/img/toggle.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-left: 16px;
+    background-size: contain;
+}
+.m-icon-refresh{
+    background: url('imgs/Sprites.64af8f61.svg') no-repeat -1098px -90px;
+	width: 24px;
+	height: 24px;
+ }
+.logo{
+    width: 100%;
+    height: 32px;
+    background-image: url(/assets/img/favicon.ico);
+    background-position: 0 center;
+    background-repeat: no-repeat;
+    background-size: 24px;
+    cursor: pointer;
+    padding-left: 40px;
+    line-height: 32px;
+}
+.m-icon-user{
+    background-image: url(/assets/img/default-avatar.jpg);
+    background-repeat: no-repeat;
+    background-size: 30px;
+    background-position: center;
+    width: 30px;
+    height: 30px;
+    flex-shrink: 0;
+    margin-right: 16px;
+    margin-left: 16px;
+}
 .m-icon-logo{
     background-image: url(/assets/img/favicon.ico);
     background-repeat: no-repeat;
     background-size: 16px;
     background-position: center;
 }
-.m-icon-refresh{
-    background-image: url(/assets/icon/refresh.png);
-    background-repeat: no-repeat;
-    background-size: 16px 16px;
-    background-position: center;
-}
+
 .m-icon-search{
     background-image: url(/assets/icon/search.png);
     background-repeat: no-repeat;

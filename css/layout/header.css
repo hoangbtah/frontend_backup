@@ -28,40 +28,9 @@
     right: 0;
     align-items: center;
 }
-.header .header-left .sibar{
-    width: 24px;
-    height: 24px;
-    flex-shrink: 0;
-    margin-right: 10px;
-    background-image: url(/assets/img/toggle.png);
-    background-position: center;
-    background-repeat: no-repeat;
-    margin-left: 16px;
-    background-size: contain;
 
-}
-.header .header-left .logo{
-    width: 100%;
-    height: 32px;
-    background-image: url(/assets/img/favicon.ico);
-    background-position: 0 center;
-    background-repeat: no-repeat;
-    background-size: 24px;
-    cursor: pointer;
-    padding-left: 40px;
-    line-height: 32px;
-}
-.header .header-right-right .header-right-r-user{
-    background-image: url(/assets/img/default-avatar.jpg);
-    background-repeat: no-repeat;
-    background-size: 30px;
-    background-position: center;
-    width: 30px;
-    height: 30px;
-    flex-shrink: 0;
-    margin-right: 16px;
-    margin-left: 16px;
-}
+
+
 .header .header-right .header-right-left{
     display: flex;
     align-items: center;
@@ -70,21 +39,6 @@
     
     margin-left: 10px;
 }
-.header .header-right .header-right-left .header-right-left-logo{
-    background: url('/assets/img/Sprites.64af8f61.svg') no-repeat -498px -1029px;
-	width: 16px;
-	height: 14px;
-    margin-right: 10px;
-    margin-left: 24px;
-}
 .header .header-right .header-right-right .header-right-r-icon{
     margin: 16px;
-}
-.header .header-right .header-right-right .header-right-r-notice{
-    background-position: center;
-    flex-shrink: 0;
-
-    background: url('/assets/img/Sprites.64af8f61.svg') no-repeat -844px -520px;
-	width: 18px;
-	height: 19px;
 }

@@ -2,7 +2,6 @@
     height: 100%;
     width: 226px;
     flex-shrink: 0;
-    /* background-color: aqua; */
     font-size: 13px;
     font-family: Googlesand Mediums ;
     background-color: #FFFFFF;
@@ -12,10 +11,8 @@
     display: flex;
     height:44px;
     width: 100%;
-    /* border-bottom: 1px solid #ccc; */
     box-sizing: border-box;
     align-items: center;
-    /* nó sẽ giữ nguyên độ rộng của cha */
 }
 .menu-item:hover{
     background-color: #e5e5e5;
