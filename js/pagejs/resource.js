@@ -9,9 +9,9 @@ var resource={
         Male:"Nam",
         Female:"Nữ",
         Other:"Chưa xác đinh",
-        employeeCodeExists:"Mã nhân viên ${employeeCode} đã tồn tại trong hệ thống",
+        employeeCodeExists:"Mã nhân viên ${employeeCode} đã tồn tại trong hệ thống vui lòng kiểm tra lại .",
         confrimDelete:"Bạn có thực sự muốn xóa Nhân viên <${employeeCode}> không ?",
-        
+        employeeNumber:"Tổng số :${employeeNumber} bản ghi",
     }
 }
 var misaEnum={

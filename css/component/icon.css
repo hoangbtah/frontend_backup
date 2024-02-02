@@ -81,7 +81,11 @@
 	width: 20px;
 	height: 20px;
 }
-
+.m-icon-warning{
+    background: url('/assets/img/Sprites.64af8f61.svg') no-repeat -32px -962px;
+	width: 32px;
+	height: 32px;
+}
 
 .m-icon-document{
     background-image: url(/assets/icon/document-online.png);
@@ -114,10 +118,10 @@
     background-position: center;
 }
 .m-icon-confirm-delete{
-    background: url('/assets/img/Sprites.64af8f61.svg') no-repeat -817px -145px;
-	width: 24px;
-	height: 24px;
-    margin-right: 10px;
+    background: url('/assets/img/Sprites.64af8f61.svg') no-repeat -598px -463px;
+	width: 37px;
+	height: 37px;
+ 
 }
 
 

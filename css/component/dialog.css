@@ -72,6 +72,7 @@
 .m-dialog .m-dialog-footer .m-dialog-footer-right .m-btn-cat{
     margin-right: 16px;
 }
+/* dialog không để trống thông tin  */
 .m-dialog .m-dialog-empty-content{
     position: absolute;
     width: 400px;
@@ -86,13 +87,18 @@
    line-height: 50px;
     border-bottom: 1px solid #333;
     height:50px ;
-    
+    display: flex;
+    padding-bottom: 24px;
+    align-items: center;
+}
+.m-dialog .m-dialog-empty-content .m-dialog-empty-header .infor-warning{
+    margin-left: 10px;
 }
 .m-dialog .m-dialog-empty-content .m-dialog-empty-btn{
     text-align: center;
     margin: 20px;
 }
-
+/* dialog mã nhân viên đã tồn tại */
 .m-dialog .m-dialog-exits-code-content{
     position: absolute;
     width: 400px;
@@ -104,12 +110,18 @@
     
 }
 .m-dialog .m-dialog-exits-code-content .m-dialog-exits-code-header{
-  
     border-bottom: 1px solid #333;
     height:50px ;
     word-wrap: break-word;
     display: flex;
-    
+    align-items: center; 
+    padding-bottom: 24px;
+}
+.m-dialog .m-dialog-exits-code-content .m-dialog-exits-code-header .infor-warning{
+    margin-left: 10px;
+}
+.m-dialog .m-dialog-confirm-del-content .m-dialog-confirm-del-header .infor-warning{
+    margin-left: 10px;
 }
 .m-dialog .m-dialog-exits-code-content .m-dialog-exits-code-btn {
     
@@ -138,6 +150,7 @@
     display: flex;
     margin: 24px;
     align-items: center;
+    padding-bottom: 24px;
 }
 .m-dialog .m-dialog-confirm-del-content .m-dialog-confirm-del-btn
 {

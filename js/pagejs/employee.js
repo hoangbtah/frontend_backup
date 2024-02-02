@@ -2,12 +2,19 @@ $(document).ready(function() {
     // thưc hiện load dữ liệu 
     //1 gọi api lấy dữ liệu 
     // loading dữ liệu
+     // lấy số lượng bản ghi trả về 
+     var empNumber=null;
     loadData();
     // khai báo các biến cho việc sử dụng 
+    // sử dụng để biết lúc nào là thêm mới hay cập nhật
     var forMode=misaEnum.forMode.Edit;
+    // sử dụng để lấy giá trị employeeId
     var empId=null;
+    // sử dụng để lấy giá trị employeeId cho việc xóa
     var empdel=null;
+    // sử dụng để lấy giá trị departmentId
     var departmentId=null;
+    // sử dụng để lấy giá trị employeeId
     var empCode=null;
     // thực hiên gán các sự kiện
     // nhấn vào nút thêm mới nhân viên
@@ -53,6 +60,10 @@ $(document).ready(function() {
     get_infor_edit_employee();
     // nhân bản nhân viên
    employee_relication();
+   // hiển thị số lượng bản ghi trả về 
+   show_employee_number();
+   // xóa các ô input khi thêm mới 
+   format_form();
      
   
 })
@@ -81,7 +92,11 @@ function loadData(){
     type: "GET",      
    url:  "https://localhost:7159/api/v1/Employees/employees",
     success: function (response) {
+      // lấy số lượng bản ghi trả về
+      empNumber = response.length;
       var departmentData = response;
+      console.log(empNumber);
+      show_employee_number(empNumber);
       // Hàm để hiển thị thông tin phòng ban trong combobox
       function displayDepartments() {
           var departmentSelect = $('#department');
@@ -198,6 +213,8 @@ function add_employee(){
     $("#dialogadd").show();
     // focus vào ô nhập liệu đầu tiên
     $("#txtEmployeeCode").focus();
+    // làm trắng các ô input khi thêm
+    format_form();
   })
 }
 // 4 show chức năng tùy chỉnh nhân viên 
@@ -241,6 +258,7 @@ function double_click_row(){
        console.log(employee);
        empId=employee.EmployeeId;
        departmentId=employee.DepartmentId;
+       // focus vào ô nhập liệu đầu tiên
       $("#txtEmployeeCode").val(employee.EmployeeCode);
       $("#txtEmployeeName").val(employee.EmployeeName);
       $("#txtIdentityCode").val(employee.IdentityCode);
@@ -284,6 +302,8 @@ function double_click_row(){
     }
       // hiển thị form 
       $("#dialogadd").show();
+      // focus vào ô mã nhân viên
+      $("#txtEmployeeCode").focus();
      
   })
 }
@@ -336,17 +356,27 @@ function click_save_add_employee(){
       }
       // chuyển giới tính về dạng số 
       var genderNumber = parseInt(selectedGender, 10);
-    /// kiểm tra không để trống dữ liệu
+    /// kiểm tra không để trống dữ liệu mã nhân viên và tên nhân viên
     if(employeeCode== null||employeeCode===""){
      // alert("mã nhân viên không đươc để trống");
-     $("#show-dialog-exits-code").hide();
+    // $("#show-dialog-exits-code").hide();
      $("#inforNotEmpty").text(resource.VI.employeeCodeNotEmpty);
        $("#show-dialog-empty").show();
        $("#m-btn-hide-dialog-empty").click(function(){
         $("#show-dialog-empty").hide();
        })
-      
     }
+    ///kiểm tra không để trống dữ liệu tên nhân viên
+    if(employeeName== null||employeeName===""){
+      // alert("mã nhân viên không đươc để trống");
+     // $("#show-dialog-exits-code").hide();
+      $("#inforNotEmpty").text(resource.VI.employeeNameNotEmpty);
+        $("#show-dialog-empty").show();
+        $("#m-btn-hide-dialog-empty").click(function(){
+         $("#show-dialog-empty").hide();
+        })
+     }
+     
     // kiểm tra ngày sinh
     if(dateOfBrith){
       dateOfBrith=new Date(dateOfBrith);
@@ -358,9 +388,6 @@ function click_save_add_employee(){
     else {
       dateOfBrith=null;
     }
-
-    // form sẽ được làm trống sau khi ấn thêm
-  //  $("#dialogadd input").val("");
     // 2 build object
     let employee={
       "employeeCode":employeeCode,
@@ -395,16 +422,17 @@ function click_save_add_employee(){
         contentType:"application/json",
         success: function (response) {
            // sau khi thực hiên thêm xong thì ẩn loading , ẩn form chi tiết, loading lại dữ liệu
-          $(".m-loading").hide();
-          $("#dialogadd").hide();
+         // $(".m-loading").hide();
+        //  $("#dialogadd").hide();
           loadData();
+          format_form();
         },
         error:function (response) {
-         // showAndHideDialogExitsCode();
-            if (response.status === 400) {
-              alert("Lỗi 400: " + response.responseJSON.userMsg);
-            // showAndHideDialogExitsCode();
-            }
+          showAndHideDialogExitsCode();
+            // if (response.status === 400) {
+            //   alert("Lỗi 400: " + response.responseJSON.userMsg);
+            // // showAndHideDialogExitsCode();
+            // }
           // } else if (response.status === 409) {
           //   showAndHideDialogExitsCode();
           // } else {
@@ -543,6 +571,7 @@ function employeeSearch(){
         type: "GET",
         url: `https://localhost:7159/api/v1/Employees/employee/${searchString}`,
         success: function (response) {
+          show_employee_number(response.length);
            // hiển thị dữ liệu tìm kiếm
            console.log(response);
            for(const employee of response)
@@ -778,8 +807,10 @@ function get_infor_edit_employee(){
     else{
       document.getElementById('txtOther').checked = true;
     }
-      // hiển thị form 
+      // hiển thị form
       $("#dialogadd").show();
+      // focus vào ô mã nhân viên
+      $("#txtEmployeeCode").focus();
      
 });
 }
@@ -839,10 +870,21 @@ function employee_relication(){
       // hiển thị form 
       $("#replication").click(function(){
         $("#dialogadd").show();
+        // focus vào ô mã nhân viên
+      $("#txtEmployeeCode").focus();
         $("#optionlist").hide();
      })
      
 });
+}
+/// hiển thị số lượng bản ghi trả về 
+function show_employee_number(em){
+  $("#employeeNumber").text(resource.VI.employeeNumber.replace("${employeeNumber}",em));
+}
+// format form khi thêm mới 
+function format_form(){
+  // các input có class là .loadel sẽ được làm trống.
+  $('.loaddel').val('');
 }
 
 
